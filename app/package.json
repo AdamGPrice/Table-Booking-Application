@@ -1,0 +1,33 @@
+{
+  "name": "table-booking",
+  "version": "1.0.0",
+  "description": "Table booking application for pubs",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=prod node src/index.js",
+    "dev": "cross-env NODE_ENV=dev nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "table",
+    "booking",
+    "REST",
+    "express",
+    "sql"
+  ],
+  "author": "Adam Price",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cross-env": "^7.0.2",
+    "crypto-js": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.12",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.6"
+  }
+}

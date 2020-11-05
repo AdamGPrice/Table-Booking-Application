@@ -1,0 +1,67 @@
+const express = require('express');
+const crypto = require('crypto-js');
+
+const db = require('../../mysql');
+const auth = require('../../authentication');
+const businessQueires = require('../businesses/businesses.queries');
+const userQueires = require('../users/users.queries');
+
+const router = express.Router();
+
+router.post('/', async (req, res) => {
+    const { type, email, password } = req.body 
+    // make sure account type is either business or user
+    if (type == 'business') {
+        const hashedPassword = crypto.SHA3(password, process.env.PASS_SECRET).toString();
+        const account = await businessQueires.authBusiness(email, hashedPassword);
+        if (account == undefined) {
+           accountNotFound(req, res);
+        } else {
+            account.type = 'business';
+            // Generate token
+            const token = auth.generateAccessToken(account);
+            // Give the token to the user
+            res.json({
+                token,
+                id: account.id,
+                email: account.email
+            });
+        }
+    } else if (type == 'user') {
+        const hashedPassword = crypto.SHA3(password, process.env.PASS_SECRET).toString();
+        const account = await userQueires.authUser(email, hashedPassword);
+        if (account == undefined) {
+           accountNotFound(req, res);
+        } else {
+            account.type = 'user';
+            // Generate token
+            const token = auth.generateAccessToken(account);
+            // Give the token to the user
+            res.json({
+                token,
+                id: account.id,
+                email: account.email
+            });
+        }
+    } else {
+        accountTypeInvalid(req, res);
+    }
+});
+
+function accountNotFound(req, res) {
+    res.status(401);
+    res.json({
+        status: 401,
+        message: 'Account details are incorrect or account does not exist'
+    });
+}
+
+function accountTypeInvalid(req, res) {
+    res.status(400);
+    res.json({ 
+        status:  res.statusCode,
+        message: 'Account type is invalid' 
+    });
+}
+
+module.exports = router;
