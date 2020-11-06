@@ -2,8 +2,9 @@ const express = require('express');
 
 // Endpoints 
 const auth = require('./auth/auth.service');
-const businesses = require('./businesses/businesses.service');
+const owners = require('./owners/owners.service');
 const users = require('./users/users.service');
+const pubs = require('./pubs/pubs.service');
 
 const router = express.Router();
 
@@ -14,7 +15,8 @@ router.get('/', (req, res) => {
 });
 
 router.use('/auth', auth);
-router.use('/businesses', businesses);
+router.use('/owners', owners);
 router.use('/users', users);
+router.use('/pubs', pubs);
 
 module.exports = router;

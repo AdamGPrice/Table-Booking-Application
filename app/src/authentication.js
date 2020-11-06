@@ -9,8 +9,8 @@ function authenticateToken(req, res, next) {
     };
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, account) => {
-        req.account = account;      // Add account data to the req show we can access user information
-        next();                     // Go the actual request the user made
+        req.account = JSON.parse(account.data); // Add account data to the req so we can access it
+        next();                                 // Go the actual request the user made
     });
 };
 
@@ -22,15 +22,26 @@ function generateAccessToken(account) {
     }, process.env.TOKEN_SECRET);
 }
 
-function accountTypeUser(req, res, next) {
-    
+function isOwner(req, res, next) {
+    if (req.account.type == 'owner') {
+        next();
+    } else {
+        res.sendStatus(401);
+    }
 }
 
-function accountTypeBusiness(req, res, next) {
-    
+function isUser(req, res, next) {
+    if (req.account.type == 'user') {
+        next();
+    } else {
+        res.sendStatus(401);
+    }
 }
+
 
 module.exports = {
     authenticateToken,
-    generateAccessToken
+    generateAccessToken,
+    isOwner,
+    isUser
 }

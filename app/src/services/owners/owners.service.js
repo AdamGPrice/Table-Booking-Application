@@ -1,7 +1,7 @@
 const express = require('express');
 const crypto = require('crypto-js');
 
-const queries = require('./businesses.queries');
+const queries = require('./owners.queries');
 const auth = require('../../authentication');
 
 const router = express.Router();
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     if (email != undefined && password != undefined) {
         const hashedPassword = crypto.SHA3(password, process.env.PASS_SECRET).toString();
         try {
-            const business = await queries.newBusiness(email, hashedPassword);
+            const business = await queries.newOwner(email, hashedPassword);
             res.status(201);
             res.json({
                 status: res.statusCode,
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
     res.on('finish', () => console.log('after'));
     console.log('before');
     // include auth here
-    const pubs = await queries.find();
+    const pubs = await queries.getAll();
     res.json(pubs);
 });
 

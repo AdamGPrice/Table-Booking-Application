@@ -3,7 +3,7 @@ const crypto = require('crypto-js');
 
 const db = require('../../mysql');
 const auth = require('../../authentication');
-const businessQueires = require('../businesses/businesses.queries');
+const ownersQueires = require('../owners/owners.queries');
 const userQueires = require('../users/users.queries');
 
 const router = express.Router();
@@ -11,13 +11,13 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     const { type, email, password } = req.body 
     // make sure account type is either business or user
-    if (type == 'business') {
+    if (type == 'owner') {
         const hashedPassword = crypto.SHA3(password, process.env.PASS_SECRET).toString();
-        const account = await businessQueires.authBusiness(email, hashedPassword);
+        const account = await ownersQueires.authOwner(email, hashedPassword);
         if (account == undefined) {
            accountNotFound(req, res);
         } else {
-            account.type = 'business';
+            account.type = 'owner';
             // Generate token
             const token = auth.generateAccessToken(account);
             // Give the token to the user
