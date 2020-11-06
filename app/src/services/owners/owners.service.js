@@ -50,7 +50,7 @@ router.get('/:id', auth.authenticateToken, async (req, res, next) => {
         res.status(404);
         res.json({
             status: res.statusCode,
-            message: 'Pub Not Found.'
+            message: 'Owner Not Found.'
         });
     } else {
         res.json(pub);

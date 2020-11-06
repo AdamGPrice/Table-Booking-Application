@@ -4,7 +4,7 @@ const tables = require('../../../libs/tableNames');
 const collumns = ['id', 'owner_id', 'name', 'description', 'email', 'phone'];
 
 module.exports = {
-    // Post Requests
+    // Post Request
     async newPub(owner_id, name, description, email, phone) {
         return db(tables.pub)
             .insert({ owner_id, name, description, email, phone });
@@ -35,4 +35,4 @@ module.exports = {
             .select(collumns)
             .where('name', 'like', `%${name}%`);
     }
-}
+};

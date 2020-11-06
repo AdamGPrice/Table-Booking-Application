@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS opening_hours (
     id              int             NOT NULL AUTO_INCREMENT,
     pub_id          int             NOT NULL,
     day             int             NOT NULL,
-    open            timestamp       NOT NULL,
-    close           timestamp       NOT NULL,
+    open            time            NOT NULL,
+    close           time            NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY(pub_id) REFERENCES pub (id)
 );

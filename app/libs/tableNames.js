@@ -2,5 +2,6 @@ module.exports = {
     owner: 'owner',
     user: 'user',
     pub: 'pub',
-    address: 'address'
+    address: 'address',
+    opening_hours: 'opening_hours'
 }

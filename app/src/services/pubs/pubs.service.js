@@ -19,7 +19,7 @@ router.post('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
                 message: 'Pub created successfully.'
             });
         } catch(error) {
-            res.status(409);
+            res.status(500);
             res.json({
                 status: res.statusCode,
                 message: error.sqlMessage

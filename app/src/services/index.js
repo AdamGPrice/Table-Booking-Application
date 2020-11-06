@@ -1,10 +1,12 @@
 const express = require('express');
 
-// Endpoints 
+// Services (Endpoints)
 const auth = require('./auth/auth.service');
 const owners = require('./owners/owners.service');
 const users = require('./users/users.service');
 const pubs = require('./pubs/pubs.service');
+const addresses = require('./addresses/addresses.service');
+const opening_hours = require('./opening_hours/opening_hours.service');
 
 const router = express.Router();
 
@@ -14,9 +16,12 @@ router.get('/', (req, res) => {
     })
 });
 
+// Add this services to api/
 router.use('/auth', auth);
 router.use('/owners', owners);
 router.use('/users', users);
 router.use('/pubs', pubs);
+router.use('/addresses', addresses);
+router.use('/opening_hours', opening_hours);
 
 module.exports = router;
