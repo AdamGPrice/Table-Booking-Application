@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const compression = require('compression');
 const helmet = require('helmet');
+const path = require('path');
 
 const app = express();
 const services = require('./services/index')
@@ -12,10 +13,21 @@ app.use(compression());
 app.use(helmet());
 app.use(express.json());
 
-app.use(express.static('public'));
-
+// All api requests will be routed to services
 app.use('/api', services);
 
+// Config the static files
+app.use(express.static('public'));
+app.use('/css', express.static(path.join(__dirname + '../public/css')));
+app.use('/js', express.static(path.join(__dirname + '../public/js')));
+app.use('/vendor', express.static(path.join(__dirname + '../vendor/js')));
+
+// Templating Engine for frontend
+app.set('views', path.join(__dirname, '../public/views'));
+app.set('view engine', 'ejs');
+
+const publicRoutes = require('../public/routes');
+app.use('/', publicRoutes);
 
 // Very last outcome if nothing else is found for specified url
 app.use((req, res) => {

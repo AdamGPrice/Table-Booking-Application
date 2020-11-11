@@ -19,16 +19,17 @@ function authenticateToken(req, res, next) {
                 status: res.statusCode,
                 message: 'JSON Web Token is no longer valid, please re-authenticate.'
             })
+        } else {
+            req.account = JSON.parse(account.data); // Add account data to the req so we can access it
+            next();                                 // Go the actual request the user made
         }
-        req.account = JSON.parse(account.data); // Add account data to the req so we can access it
-        next();                                 // Go the actual request the user made
     });
 };
 
 function generateAccessToken(account) {
     account = JSON.stringify(account);
     return jwt.sign({
-        exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), // 1 Day token
+        exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7), // 1 Week token
         data: account
     }, process.env.TOKEN_SECRET);
 }

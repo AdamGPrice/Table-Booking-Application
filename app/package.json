@@ -18,10 +18,12 @@
   "author": "Adam Price",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.0",
     "compression": "^1.7.4",
     "cross-env": "^7.0.2",
     "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "helmet": "^4.2.0",
     "jsonwebtoken": "^8.5.1",

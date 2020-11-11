@@ -24,7 +24,8 @@ router.post('/', async (req, res) => {
             res.json({
                 token,
                 id: account.id,
-                email: account.email
+                email: account.email,
+                type: 'owner'
             });
         }
     } else if (type == 'user') {
@@ -40,7 +41,8 @@ router.post('/', async (req, res) => {
             res.json({
                 token,
                 id: account.id,
-                email: account.email
+                email: account.email,
+                type: 'user'
             });
         }
     } else {

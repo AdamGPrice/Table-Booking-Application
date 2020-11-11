@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/vendor/materialize.min.css">
+    <script src="/vendor/materialize.min.js"></script>
+    <script src="/vendor/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <!-- NAV BAR INCLUDE -->
+    <%- include ('partials/nav.ejs'); %>
+    <main class="container">
+        <h1>Home Page</h1>
+        <% pubs.forEach((pub, index) => { %>
+            <h5><%= pub.name %></h5>
+            <p><%= pub.description %></p>
+            <p><%= pub.email %></p>
+            <p><%= pub.phone %></p>
+        <% }) %>
+    </main>
+    <!-- NAV BAR INCLUDE -->
+    <%- include ('partials/footer.ejs'); %>
+</body>
+</html>

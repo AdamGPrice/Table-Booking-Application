@@ -1,6 +1,6 @@
 const db = require('../../mysql');
 
-const tables = require('../../../libs/tableNames');
+const tables = require('../../libs/tableNames');
 const collumns = ['id', 'email', 'password']
 
 module.exports = {
