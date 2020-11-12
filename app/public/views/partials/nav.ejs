@@ -1,22 +1,24 @@
 <nav>
-    <script src="/js/auth.js"></script>
-    <div class="nav-wrapper #263238 blue-grey">
-        <div class="container">
-        <a href="/" class="brand-logo">Table Booking App</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/login">Sign in</a></li>
-        </ul>
-        </div>
+  <script src="/js/nav.js"></script>
+  <div class="nav-wrapper #263238 blue-grey">
+    <div class="container">
+    <a href="/" class="brand-logo" id="logoBtn">Table Booking App</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/login" id="signinBtn">Sign in</a></li>
+      <li><a href="/myAccount" id="accountBtn" style="display: none;">My Account</a></li>
+      <li><a href="#" id="signoutBtn" style="display: none;">Signout</a></li>
+    </ul>
     </div>
-    <style>
-        main {
-          display: flex;
-          min-height: 90vh;
-          flex-direction: column;
-        }
-      
-        main {
-          flex: 1 0 auto;
-        }
-    </style>
+  </div>
+  <style>
+      main {
+        display: flex;
+        min-height: 90vh;
+        flex-direction: column;
+      }
+    
+      main {
+        flex: 1 0 auto;
+      }
+  </style>
 </nav>

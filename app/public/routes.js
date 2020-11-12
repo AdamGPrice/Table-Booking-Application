@@ -26,6 +26,10 @@ router.get('/business/login', async (req, res) => {
     res.render('business/login');
 });
 
+router.get('/business/register', async (req, res) => {
+    res.render('business/register');
+});
+
 router.get('/business/dashboard', async (req, res) => {
     res.render('business/dashboard');
 });

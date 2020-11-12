@@ -55,6 +55,21 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// Get pub by owner id
+router.get('/byowner/:id', async (req, res) => {
+    const { id } = req.params;
+    const pub = await queries.getByOwnerId(id);
+    if (pub == undefined) {
+        res.status(404);
+        res.json({
+            status: res.statusCode,
+            message: 'Pub Not Found.'
+        });
+    } else {
+        res.json(pub);
+    }
+});
+
 // Filter pubs by name
 router.get('/filter/name/:name', async (req, res) => {
     const { name } = req.params;

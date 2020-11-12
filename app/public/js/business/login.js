@@ -17,7 +17,7 @@ $(() => {
                     localStorage.setItem('account', JSON.stringify(data));
                     //const store = localStorage.getItem('user');
                     //console.log(JSON.parse(store));
-                    window.location.href = "/";
+                    window.location.href = "/business/dashboard";
                 },
                 error: (response) => {
                     console.log(response);        
