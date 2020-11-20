@@ -61,6 +61,8 @@ async function isPubOwner(req, res, pub_id) {
         } else {
             return false;
         }
+    } else {
+        return false;
     }
 }
 

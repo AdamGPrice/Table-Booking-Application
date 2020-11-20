@@ -10,6 +10,13 @@ module.exports = {
             .insert({ owner_id, name, description, email, phone });
     },
 
+    // Put Request
+    async editPub(id, name, description, email, phone) {
+        return db(tables.pub)
+            .where('id', '=', id)
+            .update({ name, description, email, phone });
+    },
+
     // Get Requests
     async getAll() {
         return db(tables.pub)

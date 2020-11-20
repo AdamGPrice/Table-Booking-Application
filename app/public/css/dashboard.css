@@ -1,0 +1,52 @@
+#pub-name {
+    padding: 4px;
+    padding-bottom: 6px;
+}
+
+#dashboard-nav {
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+#dashboard-content {
+    min-height: 100vh;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#dashboard-main-content {
+}
+
+.row {
+    margin-bottom: 0px;
+}
+
+.dashboard-nav-btn {
+    padding: 6px;
+    cursor: pointer;
+    color: black;
+}
+
+.dashboard-nav-btn:hover {
+    background-color: #b0bec5 !important;
+}
+
+.dashboard-title {
+    padding: 6px;
+}
+
+/* label color */
+.input-field label {
+    color: #000;
+    font-size: 1.2rem;
+}
+.input-field input {
+    font-size: 1.5rem !important;
+}
+
+.input-field textarea {
+    font-size: 1.5rem !important;
+}

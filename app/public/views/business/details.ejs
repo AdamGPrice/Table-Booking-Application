@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Pub Details</title>
+    <link rel="stylesheet" href="/vendor/materialize.min.css">
+    <script src="/vendor/materialize.min.js"></script>
+    <script src="/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/js/business/details.js"></script>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <!-- NAV BAR INCLUDE -->
+  <%- include ('../partials/nav.ejs'); %>
+  <main class="row">
+    <div class="col s12 m4 l2 blue-grey lighten-2" id="dashboard-nav">
+      <%- include ('../partials/dash-nav.ejs') %> 
+    </div>
+    <div class="col s12 m8 l10 grey lighten-5" id="dashboard-content">
+      <div class="container">
+        <h2 class="center dashboard-title">Pub Details</h2>
+
+        <div class="divider"></div>
+        <div class="divider"></div>
+
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input disabled id="form-name" type="text">
+                    <label for="form-name">Pub name</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea disabled id="form-description" class="materialize-textarea"></textarea>
+                    <label for="form-description">Short Description</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input disabled id="form-email" type="email">
+                    <label for="form-email">Contact Email</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input disabled id="form-number" type="text">
+                    <label for="form-number">Contact Number</label>
+                  </div>
+                </div>
+                <a class="waves-effect waves-light btn" id="details-changes-btn">Make Changes</a>
+                <a class="waves-effect waves-light btn red darken-2" id="details-discard-btn" style="display: none;">Discard Changes</a>
+                <a class="waves-effect waves-light btn" id="details-save-btn" style="display: none;">Save</a>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="divider"></div>
+        <div class="divider"></div>
+
+        <h2 class="center dashboard-title">Address</h2>
+
+        <div class="section">
+            <div class="container">
+              <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input disabled id="form-line_1" type="text">
+                      <label for="form-line_1">Address Line 1</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input disabled id="form-line_2" type="text">
+                      <label for="form-line_2">Address Line 2</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input disabled id="form-town" type="text">
+                      <label for="form-town">Town</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input disabled id="form-country" type="text">
+                      <label for="form-country">Country</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input disabled id="form-postcode" type="text">
+                      <label for="form-postcode">Post Code</label>
+                    </div>
+                  </div>
+                  <a class="waves-effect waves-light btn" id="address-changes-btn">Make Changes</a>
+                  <a class="waves-effect waves-light btn red darken-2" id="address-discard-btn" style="display: none;">Discard Changes</a>
+                  <a class="waves-effect waves-light btn" id="address-save-btn" style="display: none;">Save</a>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="section"></div>
+          <div class="section"></div>
+          <div class="section"></div>
+          <div class="section"></div>
+          <div class="section"></div>
+          <div class="section"></div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

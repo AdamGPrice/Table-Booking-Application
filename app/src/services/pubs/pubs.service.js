@@ -34,6 +34,35 @@ router.post('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
     }
 });
 
+// Edit pub details
+router.put('/:id', auth.authenticateToken, async (req, res) => {
+    const { id } = req.params;
+    const { name, description, email, phone } = req.body;
+    const doesOwnPub = await auth.isPubOwner(req, res, id);
+    if (doesOwnPub) {
+        try {
+            const pub = await queries.editPub(id, name, description, email, phone);
+            res.status(200);
+            res.json({
+                status: res.statusCode,
+                message: 'Pub information updated successfully.'
+            });
+        } catch(error) {
+            res.status(500);
+            res.json({
+                status: res.statusCode,
+                message: error.sqlMessage
+            });
+        }
+    } else {
+        res.status(401);
+        res.json({
+            status: res.statusCode,
+            message: 'Not the owner pub trying to edit or pub does not exist.'
+        })
+    }
+});
+
 // Get all pubs
 router.get('/', async (req, res) => {       
     const pubs = await queries.getAll();

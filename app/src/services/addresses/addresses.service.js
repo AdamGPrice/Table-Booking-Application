@@ -89,8 +89,18 @@ router.get('/', async (req, res) => {
 });
 
 // Get an address by pub id
-router.get('/', async (req, res) => {
-
+router.get('/pub/:id', async (req, res) => {
+    const { id } = req.params;
+    const pub = await queries.getByPubId(id);
+    if (pub == undefined) {
+        res.status(404);
+        res.json({
+            status: res.statusCode,
+            message: 'Address not found for pub.'
+        });
+    } else {
+        res.json(pub);
+    }
 });
 
 module.exports = router;

@@ -34,4 +34,12 @@ router.get('/business/dashboard', async (req, res) => {
     res.render('business/dashboard');
 });
 
+router.get('/business/dashboard/details', async (req, res) => {
+    res.render('business/details');
+});
+
+router.get('/business/dashboard/opening-times', async (req, res) => {
+    res.render('business/opening-times');
+});
+
 module.exports = router;

@@ -5,6 +5,7 @@ $(async () => {
     if (pub) {
         // Save the pub id
         localStorage.setItem('pubId', pub.id);
+        window.location.href = "/business/dashboard/details"
     }
 });
 
