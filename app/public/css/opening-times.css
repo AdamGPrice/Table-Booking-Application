@@ -1,0 +1,9 @@
+/* label color */
+.input-field label {
+    color: rgba(0,0,0,0.42);
+    font-size: 1.2rem;
+}
+
+.tt-btn {
+    top: 16px;
+}

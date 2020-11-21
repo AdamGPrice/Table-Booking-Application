@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Opening Times</title>
     <link rel="stylesheet" href="/vendor/materialize.min.css">
-    <script src="/vendor/materialize.min.js"></script>
     <script src="/vendor/jquery-3.5.1.min.js"></script>
-    <script src="/js/business/openingtimes.js"></script>
+    <script src="/vendor/materialize.min.js"></script>
+    <script src="/js/business/opening-times.js"></script>
     <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/opening-times.css">
 </head>
 <body>
   <!-- NAV BAR INCLUDE -->
@@ -20,7 +21,142 @@
     <div class="col s12 m8 l10 grey lighten-5" id="dashboard-content">
       <div class="container">
         <h2 class="center dashboard-title">Opening Times</h2>
+        <div class="divider"></div>
+        <div class="divider"></div>
 
+        <h5>Monday</h5>
+        <div class="row" id="day-1">
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker open">
+            <label for="timepicker-close" class="open-label">Opening</label>
+          </div>
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker close">
+            <label for="timepicker-close" class="close-label">Closing</label>
+          </div>
+          <a class="waves-effect waves-light btn tt-btn btn-open" style="display: none;">Open Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-change" style="display: none;">Make Changes</a>
+          <a class="waves-effect waves-light btn tt-btn btn-close red darken-2" style="display: none;">Delete Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-save" style="display: none;">Save</a>
+          <a class="waves-effect waves-light btn tt-btn btn-create" style="display: none;">Confirm</a>
+          <a class="waves-effect waves-light btn tt-btn btn-discard red darken-2" style="display: none;">Discard Changes</a>
+        </div>
+
+        <h5>Tuesday</h5>
+        <div class="row" id="day-2">
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker open">
+            <label for="timepicker-close" class="open-label">Opening</label>
+          </div>
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker close">
+            <label for="timepicker-close" class="close-label">Closing</label>
+          </div>
+          <a class="waves-effect waves-light btn tt-btn btn-open" style="display: none;">Open Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-change" style="display: none;">Make Changes</a>
+          <a class="waves-effect waves-light btn tt-btn btn-close red darken-2" style="display: none;">Delete Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-save" style="display: none;">save</a>
+          <a class="waves-effect waves-light btn tt-btn btn-create" style="display: none;">Confirm</a>
+          <a class="waves-effect waves-light btn tt-btn btn-discard red darken-2" style="display: none;">Discard Changes</a>
+        </div>
+
+        <h5>Wednesday</h5>
+        <div class="row" id="day-3">
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker open">
+            <label for="timepicker-close" class="open-label">Opening</label>
+          </div>
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker close">
+            <label for="timepicker-close" class="close-label">Closing</label>
+          </div>
+          <a class="waves-effect waves-light btn tt-btn btn-open" style="display: none;">Open Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-change" style="display: none;">Make Changes</a>
+          <a class="waves-effect waves-light btn tt-btn btn-close red darken-2" style="display: none;">Delete Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-save" style="display: none;">save</a>
+          <a class="waves-effect waves-light btn tt-btn btn-create" style="display: none;">Confirm</a>
+          <a class="waves-effect waves-light btn tt-btn btn-discard red darken-2" style="display: none;">Discard Changes</a>
+        </div>
+
+        <h5>Thurday</h5>
+        <div class="row" id="day-4">
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker open">
+            <label for="timepicker-close" class="open-label">Opening</label>
+          </div>
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker close">
+            <label for="timepicker-close" class="close-label">Closing</label>
+          </div>
+          <a class="waves-effect waves-light btn tt-btn btn-open" style="display: none;">Open Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-change" style="display: none;">Make Changes</a>
+          <a class="waves-effect waves-light btn tt-btn btn-close red darken-2" style="display: none;">Delete Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-save" style="display: none;">save</a>
+          <a class="waves-effect waves-light btn tt-btn btn-create" style="display: none;">Confirm</a>
+          <a class="waves-effect waves-light btn tt-btn btn-discard red darken-2" style="display: none;">Discard Changes</a>
+        </div>
+
+        <h5>Friday</h5>
+        <div class="row" id="day-5">
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker open">
+            <label for="timepicker-close" class="open-label">Opening</label>
+          </div>
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker close">
+            <label for="timepicker-close" class="close-label">Closing</label>
+          </div>
+          <a class="waves-effect waves-light btn tt-btn btn-open" style="display: none;">Open Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-change" style="display: none;">Make Changes</a>
+          <a class="waves-effect waves-light btn tt-btn btn-close red darken-2" style="display: none;">Delete Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-save" style="display: none;">save</a>
+          <a class="waves-effect waves-light btn tt-btn btn-create" style="display: none;">Confirm</a>
+          <a class="waves-effect waves-light btn tt-btn btn-discard red darken-2" style="display: none;">Discard Changes</a>
+        </div>
+
+        <h5>Saturday</h5>
+        <div class="row" id="day-6">
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker open">
+            <label for="timepicker-close" class="open-label">Opening</label>
+          </div>
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker close">
+            <label for="timepicker-close" class="close-label">Closing</label>
+          </div>
+          <a class="waves-effect waves-light btn tt-btn btn-open" style="display: none;">Open Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-change" style="display: none;">Make Changes</a>
+          <a class="waves-effect waves-light btn tt-btn btn-close red darken-2" style="display: none;">Delete Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-save" style="display: none;">save</a>
+          <a class="waves-effect waves-light btn tt-btn btn-create" style="display: none;">Confirm</a>
+          <a class="waves-effect waves-light btn tt-btn btn-discard red darken-2" style="display: none;">Discard Changes</a>
+        </div>
+
+        <h5>Sunday</h5>
+        <div class="row" id="day-7">
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker open">
+            <label for="timepicker-close" class="open-label">Opening</label>
+          </div>
+          <div class="input-field col s2">
+            <input disabled type="text" class="timepicker close">
+            <label for="timepicker-close" class="close-label">Closing</label>
+          </div>
+          <a class="waves-effect waves-light btn tt-btn btn-open" style="display: none;">Open Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-change" style="display: none;">Make Changes</a>
+          <a class="waves-effect waves-light btn tt-btn btn-close red darken-2" style="display: none;">Delete Day</a>
+          <a class="waves-effect waves-light btn tt-btn btn-save" style="display: none;">save</a>
+          <a class="waves-effect waves-light btn tt-btn btn-create" style="display: none;">Confirm</a>
+          <a class="waves-effect waves-light btn tt-btn btn-discard red darken-2" style="display: none;">Discard Changes</a>
+        </div>
+
+        <!-- Page padding -->
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
       </div>
     </div>
   </main>

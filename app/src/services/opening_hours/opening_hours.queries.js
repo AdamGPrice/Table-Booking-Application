@@ -10,6 +10,22 @@ module.exports = {
             .insert({ pub_id, day, open, close });
     },
 
+    // Put request
+    async updateByPubIdAndDay(pub_id, day, open, close) {
+        return db(tables.opening_hours)
+            .where('pub_id', '=', pub_id)
+            .andWhere('day', '=', day)
+            .update({ open, close });
+    },
+
+    // Delete request
+    async deleteByPubIdAndDay(pub_id, day) {
+        return db(tables.opening_hours)
+            .where('pub_id', '=', pub_id)
+            .andWhere('day', '=', day)
+            .del();
+    },
+
     // Get requests
     async getAll() {
         return db(tables.opening_hours)
@@ -19,8 +35,7 @@ module.exports = {
     async getByPubId(pub_id) {
         return db(tables.opening_hours)
             .select(collumns)
-            .where('pub_id', '=', pub_id)
-            .first();
+            .where('pub_id', '=', pub_id);
     },
 
     async getByPubIdAndDay(pub_id, day) {
