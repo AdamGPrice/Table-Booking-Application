@@ -17,17 +17,12 @@
     right: 0px;
 }
 
-#dashboard-main-content {
+.dash-nav-btns .btn-large {
+    margin-top: 20px;
 }
 
 .row {
     margin-bottom: 0px;
-}
-
-.dashboard-nav-btn {
-    padding: 6px;
-    cursor: pointer;
-    color: black;
 }
 
 .dashboard-nav-btn:hover {

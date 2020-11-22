@@ -30,6 +30,10 @@ router.get('/business/register', async (req, res) => {
     res.render('business/register');
 });
 
+router.get('/business/address', async (req, res) => {
+    res.render('business/address');
+});
+
 router.get('/business/dashboard', async (req, res) => {
     res.render('business/dashboard');
 });

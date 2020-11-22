@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register your business</title>
+    <link rel="stylesheet" href="/vendor/materialize.min.css">
+    <script src="/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/vendor/materialize.min.js"></script>
+    <script src="/js/business/address.js"></script>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <style>
+    .input-field label {
+        color: rgba(0,0,0,0.42);
+        font-size: 1.2rem;
+    }
+    </style>
+</head>
+<body>
+<!-- NAV BAR INCLUDE -->
+<%- include ('../partials/nav.ejs'); %>
+    <main class="row">
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="section"></div>
+                    <h2 class="center">Enter Your Pub/Bar Address</h2>
+                    <div class="divider"></div>
+                    <div class="divider"></div>
+
+                    <div class="section">
+                    <div class="container">
+                    <div class="row">
+                        <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <input id="form-line_1" type="text">
+                            <label for="form-line_1">Address Line 1</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <input id="form-line_2" type="text">
+                            <label for="form-line_2">Address Line 2</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <input id="form-town" type="text">
+                            <label for="form-town">Town</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <input id="form-country" type="text">
+                            <label for="form-country">Country</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <input id="form-postcode" type="text">
+                            <label for="form-postcode">Post Code</label>
+                            </div>
+                        </div>
+                        <a class="waves-effect waves-light btn" id="address-confirm-btn">Confirm</a>
+                        </form>
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="section"></div>
+                    <div class="section"></div>
+                    <div class="divider"></div>
+                    <div class="divider"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+<!-- NAV BAR INCLUDE -->
+<%- include ('../partials/footer.ejs'); %>
+</body>
+</html>

@@ -130,7 +130,7 @@ function getAddressDetails() {
         error: (response) => {
             // If no pub exists redirect the user to register their business
             if (response.status == 404) {
-                window.location.href = '/business/register';
+                window.location.href = '/business/address';
             }        
         }
     });

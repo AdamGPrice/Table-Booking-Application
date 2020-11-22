@@ -34,7 +34,7 @@ function AuthenticateUser(email, password) {
         success: (data) => {
             console.log(data)
             localStorage.setItem('account', JSON.stringify(data));
-            window.location.href = "/";
+            window.location.href = "/business/dashboard";
         },
         error: (response) => {
             console.log(response);        
