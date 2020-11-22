@@ -7,6 +7,7 @@ const users = require('./users/users.service');
 const pubs = require('./pubs/pubs.service');
 const addresses = require('./addresses/addresses.service');
 const opening_hours = require('./opening_hours/opening_hours.service');
+const tables = require('./tables/tables.service');
 
 const router = express.Router();
 
@@ -23,5 +24,6 @@ router.use('/users', users);
 router.use('/pubs', pubs);
 router.use('/addresses', addresses);
 router.use('/opening_hours', opening_hours);
+router.use('/tables', tables);
 
 module.exports = router;

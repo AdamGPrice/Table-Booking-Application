@@ -1,30 +1,30 @@
 const express = require('express');
 
-const queries = require('./opening_hours.queries');
+const queries = require('./tables.queries');
 const auth = require('../../authentication');
 const router = express.Router();
 
-
+// Post a new table 
 router.post('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
-    // Check if the user making the request has persmissions to change pub opening_hours
-    const { pub_id, day, open, close } = req.body
+    // Check if the owner making the request has permissions to change table data
+    const { pub_id, table_num, seats, is_outside } = req.body
     const isOwner = await auth.isPubOwner(req, res, pub_id)
     if (!isOwner) {
         res.status(403);
         res.json({
             status: res.statusCode,
-            message: 'Account does not permissions to change opening_hours for this pub'
+            message: 'Account does not permissions to change table data for this pub.'
         });
     } else {
-        // Check if that day already has opeing times 
-        const exists = await queries.getByPubIdAndDay(pub_id, day);
+        // Check if that table already exists
+        const exists = await queries.getTableByPubIdAndNumber(pub_id, table_num);
         if (exists == undefined) {
             try {
-                const opening_hours = await queries.newOpeningHour(pub_id, day, open, close);
+                const table = await queries.newTable(pub_id, table_num, seats, is_outside);
                 res.status(201);
                 res.json({
                     status: res.statusCode,
-                    message: 'Created new opening times successfully.'
+                    message: 'Created new table data successfully.'
                 });
             } catch(error) {
                 res.status(500);
@@ -37,33 +37,35 @@ router.post('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
             res.status(409);
             res.json({
                 status: res.statusCode,
-                message: 'Opening Hours for that day are already created.' 
+                message: 'A table with that number already exists for this pub.'
             });
         }
     }
 });
 
-// Update opening hours
+
+
+// Update a table entry 
 router.put('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
     // Check if the user making the request has permission to change opening hours
-    const { pub_id, day, open, close } = req.body
+    const { pub_id, table_num, seats, is_outside } = req.body
     const isOwner = await auth.isPubOwner(req, res, pub_id)
     if (!isOwner) {
         res.status(403);
         res.json({
             status: res.statusCode,
-            message: 'Owner does not have the permission to change opening hours for this pub'
+            message: 'Account does not permissions to change table data for this pub.'
         });
     } else {
-        // Check if the opening_hours for that day exists before making changes
-        const exists = await queries.getByPubIdAndDay(pub_id, day);
+        // Check if the table exists before making changes
+        const exists = await queries.getTableByPubIdAndNumber(pub_id, table_num);
         if (exists != undefined) {
             try {
-                const opening_hours = await queries.updateByPubIdAndDay(pub_id, day, open, close);
+                const table = await queries.updateByPubIdAndNum(pub_id, table_num, seats, is_outside);
                 res.status(200);
                 res.json({
                     status: res.statusCode,
-                    message: 'Opening hours updated successfully.'
+                    message: 'Table data updated successfully.'
                 });
             } catch(error) {
                 res.status(500);
@@ -76,35 +78,33 @@ router.put('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
             res.status(409);
             res.json({
                 status: res.statusCode,
-                message: 'Opening hours for this day does not exist and must be created fist' 
+                message: 'Cannot update a table that does not exist. Check table number.' 
             });
         }
     }
 });
 
-
-// Update opening hours
-router.delete('/pub/:id/day/:day', auth.authenticateToken, auth.isOwner, async (req, res) => {
-    const { id, day } = req.params;
-    console.log(id, day);
-    // Check if the user making the request has permission to change opening hours
+// Delete a table entry 
+router.delete('/pub/:id/table/:num', auth.authenticateToken, auth.isOwner, async (req, res) => {
+    const { id, num } = req.params;
+    // Check if the owner making the request has permissions to change table data
     const isOwner = await auth.isPubOwner(req, res, id)
     if (!isOwner) {
         res.status(403);
         res.json({
             status: res.statusCode,
-            message: 'Owner does not have the permission to change opening hours for this pub'
+            message: 'Account does not permissions to change table data for this pub.'
         });
     } else {
-        // Check if the day exists before tying to delete
-        const exists = await queries.getByPubIdAndDay(id, day);
+        // Check if the day already exists
+        const exists = await queries.getTableByPubIdAndNumber(id, num);
         if (exists != undefined) {
             try {
-                const result = await queries.deleteByPubIdAndDay(id, day);
+                const result = await queries.deleteTableByPubIdAndNumber(id, num);
                 res.status(200);
                 res.json({
                     status: res.statusCode,
-                    message: 'Opening hours deleted successfully.'
+                    message: 'Table data deleted successfully.'
                 });
             } catch(error) {
                 res.status(500);
@@ -117,36 +117,24 @@ router.delete('/pub/:id/day/:day', auth.authenticateToken, auth.isOwner, async (
             res.status(409);
             res.json({
                 status: res.statusCode,
-                message: 'Opening hours for this day does not exist and must be created fist before deleting' 
+                message: 'Cannot delete a table that does not exist.' 
             });
         }
     }
 });
 
-// Get Requests
-router.get('/', async (req, res) => {
-    const opening_hours = await queries.getAll();
-    res.json(opening_hours);
-});
-
+// Get all tables in a pub
 router.get('/pub/:id', async (req, res) => {
     const { id } = req.params;
-    const opening_hours = await queries.getByPubId(id);
-    res.json(opening_hours);
+    const tables = await queries.getTablesByPubId(id);
+    res.json(tables);
 });
 
-router.get('/pub/:id/day/:day', async (req, res) => {
-    const { id, day} = req.params;
-    const opening_hours = await queries.getByPubIdAndDay(id, day);
-    if (opening_hours == undefined) {
-        res.status(404);
-        res.json({
-            status: res.statusCode,
-            message: 'Day not found for pub.'
-        });
-    } else {
-        res.json(opening_hours);
-    }
+// Get all tables in a pub and query if outside/inside
+router.get('/pub/:id/is_outside/:bool', async (req, res) => {
+    const { id, bool } = req.params;
+    const tables = await queries.getTablesByPubIdIsOutside(id, bool);
+    res.json(tables);
 });
 
 module.exports = router;

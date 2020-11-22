@@ -3,5 +3,6 @@ module.exports = {
     user: 'user',
     pub: 'pub',
     address: 'address',
-    opening_hours: 'opening_hours'
+    opening_hours: 'opening_hours',
+    table: 'table'
 }
