@@ -30,7 +30,8 @@ module.exports = {
     async getTablesByPubId(pub_id) {
         return db(tables.table)
             .select()
-            .where('pub_id', '=', pub_id);
+            .where('pub_id', '=', pub_id)
+            .orderBy('table_num');
     },
 
     async getTablesByPubIdIsOutside(pub_id, is_outside) {

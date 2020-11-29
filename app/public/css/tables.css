@@ -1,0 +1,28 @@
+.input-field  {
+    padding: 0px;
+    margin: 0px;
+}
+
+.input-field input {
+    padding: 0px;
+    margin: 0px;
+}
+
+#table-body p{
+    font-size: 1.5rem !important;
+    padding: 0px;
+    margin: 0px;
+}
+
+th {
+    font-size: 1.2rem !important;
+}
+
+.input-field label {
+    color: rgba(0,0,0,0.42);
+    font-size: 1.2rem;
+}
+
+#option-label {
+    font-size: 1.0rem;
+}

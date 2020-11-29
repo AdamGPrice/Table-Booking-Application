@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Tables</title>
+  <link rel="stylesheet" href="/vendor/materialize.min.css">
+  <script src="/vendor/jquery-3.5.1.min.js"></script>
+  <script src="/vendor/materialize.min.js"></script>
+  <script src="/js/business/tables.js"></script>
+  <script src="/js/business/dash-nav.js"></script>
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/tables.css">
+</head>
+<body>
+  <!-- NAV BAR INCLUDE -->
+  <%- include ('../partials/nav.ejs'); %>
+  <main class="row">
+    <div class="col s12 m4 l2 blue-grey lighten-2" id="dashboard-nav">
+      <%- include ('../partials/dash-nav.ejs') %> 
+    </div>
+    <div class="col s12 m8 l10 grey lighten-5" id="dashboard-content">
+      <div class="container">
+        <h2 class="center dashboard-title">Tables</h2>
+        <div class="divider"></div>
+        <div class="divider"></div>
+
+        <table class="highlight centered">
+          <thead>
+            <tr>
+                <th>Table Number</th>
+                <th>Capacity</th>
+                <th>Location</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+          </tbody>
+        </table>    
+
+        <div class="divider"></div>
+        <div class="divider"></div>
+        <h4 class="center">Add Table</h4>
+        
+        <div class="section"></div>
+
+        <div class="row">
+          <form class="col s12">
+            <div class="input-field col s2">
+              <input id="form-number" type="number" value="1" min="1" max="1000">
+              <label for="form-number">Table Number</label>
+            </div>
+            <div class="input-field col s2">
+              <input id="form-capacity" type="number" value="4" min="1" max="100">
+              <label for="form-capacity">Capacity</label>
+            </div>
+            <div class="input-field col s3">
+              <select id="form-is_oustide">
+                <option value="0">Inside</option>
+                <option value="1">Outside</option>
+              </select>
+              <label id="option-label">Location</label>
+            </div>
+            <a class="waves-effect waves-light btn" id="new-table-btn">Add</a>
+          </form>
+        </div>
+
+        <!-- Page padding -->
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="section"></div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
