@@ -18,9 +18,9 @@ app.use('/api', services);
 
 // Config the static files
 app.use(express.static('public'));
-app.use('/css', express.static(path.join(__dirname + '../public/css')));
-app.use('/js', express.static(path.join(__dirname + '../public/js')));
-app.use('/vendor', express.static(path.join(__dirname + '../vendor/js')));
+app.use('/css', express.static(path.join(__dirname, '../public/css')));
+app.use('/js', express.static(path.join(__dirname, '../public/js')));
+app.use('/vendor', express.static(path.join(__dirname, '../public/vendor')));
 
 // Templating Engine for frontend
 app.set('views', path.join(__dirname, '../public/views'));
@@ -28,6 +28,12 @@ app.set('view engine', 'ejs');
 
 const publicRoutes = require('../public/routes');
 app.use('/', publicRoutes);
+
+/// ##################
+app.use('/uploads/:id', (req, res) => {
+    res.sendFile(path.join(__dirname, `../uploads/${req.params.id}`));
+});
+/// #################
 
 // Very last outcome if nothing else is found for specified url
 app.use((req, res) => {

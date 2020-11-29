@@ -50,4 +50,8 @@ router.get('/business/dashboard/tables', async (req, res) => {
     res.render('business/tables');
 });
 
+router.get('/business/dashboard/pictures', async (req, res) => {
+    res.render('business/pictures');
+});
+
 module.exports = router;
