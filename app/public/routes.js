@@ -4,9 +4,10 @@ const axios = require('axios');
 
 // Main / User pages
 router.get('/', async (req, res) => {
-    const result = await axios.get('http://localhost:3030/api/pubs');
-    console.log(result.data);
-    res.render('index', { pubs: result.data });
+    //const result = await axios.get('http://localhost:3030/api/pubs');
+    //console.log(result.data);
+    //res.render('index', { pubs: result.data });
+    res.render('index', { pubs: [] });
 });
 
 router.get('/signup', async (req, res) => {

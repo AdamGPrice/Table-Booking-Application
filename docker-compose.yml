@@ -10,7 +10,7 @@ services:
     ports:
     - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: my-secret-pw
     volumes:
       - mysql-volume:/var/lib/mysql
 
@@ -18,7 +18,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 8081:8080
 
 volumes:
   mysql-volume:

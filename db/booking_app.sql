@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `table` (
 );
 
 /* TEST PUB ACCOUNT */
-INSERT INTO owner (email, password) VALUES ('testpub@email.com', 'bd05882172acae1ec49222d55aed4aa719372458fe9a144ec85e30d773fe36ef039a371ed63e283dcbd4f3d81b98398183e8a3a3a8bd43aab40a4279769e36a1');
+INSERT INTO owner (email, password) VALUES ('testpub@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
 INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'Test Pub', 'A pub for testing', 'test@contact.com', 19289289323);
 INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');
 /* Opening hours */

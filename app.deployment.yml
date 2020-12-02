@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: app-loadbalancer
+spec:
+ type: LoadBalancer
+ selector:
+    app: booking-app
+ ports:
+  - name: "80"
+    port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking-app
+spec:
+  selector:
+    matchLabels:
+      app: booking-app
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: booking-app
+    spec:
+      containers:
+      - name: booking-app
+        image: table-app:node
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DBPASS
+          value: my-secret-pw
+        - name: DBSERVER
+          value: mysql-service
+        resources:
+          limits:
+            memory: "128Mi" #128 MB
+            cpu: "100m" #100 millicpu (.1 cpu or 10% of the cpu)
+      initContainers:
+      - name: init-mysql
+        image: busybox
+        command: ['sh', '-c', 'sleep 30;']
+        #command: ['sh', '-c', 'until nslookup mysql-service; do echo waiting for mysql; sleep 2s; done;']

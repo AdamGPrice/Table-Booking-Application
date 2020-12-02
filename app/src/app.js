@@ -4,8 +4,11 @@ const compression = require('compression');
 const helmet = require('helmet');
 const path = require('path');
 
+require('dotenv').config();
+
 const app = express();
 const services = require('./services/index')
+
 
 // npm middlewares
 app.use(morgan('tiny'));

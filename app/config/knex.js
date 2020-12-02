@@ -1,19 +1,11 @@
-require('dotenv').config();
-
 module.exports = {
   prod: {
     client: 'mysql',
     connection: {
-      host: 'localhost',
+      host: process.env.DBSERVER,
       database: process.env.MYSQL_DATABASE,
       user:     'root',
-      password: process.env.MYSQL_ROOT_PASSWORD
-    },
-    migrations: {
-      directory: './db/migrations'
-    },
-    seeds: {
-      directory: './db/seeds'
+      password: process.env.DBPASS
     }
   },
   dev: {
@@ -23,12 +15,6 @@ module.exports = {
       database: process.env.MYSQL_DATABASE,
       user:     'root',
       password: process.env.MYSQL_ROOT_PASSWORD
-    },
-    migrations: {
-      directory: './db/migrations'
-    },
-    seeds: {
-      directory: './db/seeds'
     }
-  },
+  }
 };
