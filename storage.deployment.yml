@@ -10,3 +10,16 @@ spec:
   resources: 
     requests:
       storage: 5Gi # 5GB
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pictures-claim
+  labels:
+    app: booking-app
+spec:
+  accessModes: 
+    - ReadWriteOnce
+  resources: 
+    requests:
+      storage: 20Gi # 20GB

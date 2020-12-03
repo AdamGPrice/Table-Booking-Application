@@ -60,6 +60,14 @@ CREATE TABLE IF NOT EXISTS `table` (
     UNIQUE (pub_id, table_num)
 );
 
+CREATE TABLE IF NOT EXISTS picture (
+    id              int             NOT NULL AUTO_INCREMENT,
+    pub_id          int             NOT NULL,
+    name            varchar(100)    NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(pub_id) REFERENCES pub (id)
+);
+
 /* TEST PUB ACCOUNT */
 INSERT INTO owner (email, password) VALUES ('testpub@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
 INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'Test Pub', 'A pub for testing', 'test@contact.com', 19289289323);

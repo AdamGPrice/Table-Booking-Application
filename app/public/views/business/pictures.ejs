@@ -10,6 +10,7 @@
   <script src="/js/business/pictures.js"></script>
   <script src="/js/business/dash-nav.js"></script>
   <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/pictures.css">
 </head>
 <body>
   <!-- NAV BAR INCLUDE -->
@@ -24,13 +25,39 @@
         <div class="divider"></div>
         <div class="divider"></div>
 
-        <form enctype="multipart/form-data">
-            <input name="file" type="file" />
-            <input type="button" value="Upload" />
-        </form>
+        <div class="section"></div>
 
-        <h1>TODO: FIGURE OUT HOW TO HAVE PICTURES SHARED BETWEEN ALL REST SERVICES USING VOLUMES I AM GUESSING</h1>
+        <div class="row" id="pictures-box">
+
+        </div>
         
+        <div class="section"></div>
+
+        <div class="divider"></div>
+        <div class="divider"></div>
+        <h4 class="center">Add Picture</h4>
+    
+        <div class="row">
+          <div class="col s8">
+            <form enctype="multipart/form-data">
+              <div class="file-field input-field">
+                <div class="btn">
+                  <span>Choose file</span>
+                  <input name="file" type="file" id="file">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" id="file-text">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s2">
+            <div class="file-field input-field">
+              <a class="waves-effect waves-light btn" id="upload-btn">Upload</a>
+            </div>
+          </div>
+        </div>
+
         <!-- Page padding -->
         <div class="section"></div>
         <div class="section"></div>

@@ -7,8 +7,8 @@ const router = express.Router();
 // Post a new table 
 router.post('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
     // Check if the owner making the request has permissions to change table data
-    const { pub_id, table_num, seats, is_outside } = req.body
-    const isOwner = await auth.isPubOwner(req, res, pub_id)
+    const { pub_id, table_num, seats, is_outside } = req.body;
+    const isOwner = await auth.isPubOwner(req, res, pub_id);
     if (!isOwner) {
         res.status(403);
         res.json({
