@@ -4,6 +4,7 @@ const express = require('express');
 const auth = require('./auth/auth.service');
 const owners = require('./owners/owners.service');
 const users = require('./users/users.service');
+const user_info = require('./user_info/user_info.service');
 const pubs = require('./pubs/pubs.service');
 const addresses = require('./addresses/addresses.service');
 const opening_hours = require('./opening_hours/opening_hours.service');
@@ -18,10 +19,11 @@ router.get('/', (req, res) => {
     })
 });
 
-// Add this services to api/
+// Routing all the service endpoints to api/'endpoint'
 router.use('/auth', auth);
 router.use('/owners', owners);
 router.use('/users', users);
+router.use('/user_info', user_info);
 router.use('/pubs', pubs);
 router.use('/addresses', addresses);
 router.use('/opening_hours', opening_hours);
