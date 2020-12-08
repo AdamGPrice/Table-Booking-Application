@@ -1,0 +1,57 @@
+main {
+  display: block;
+  min-height: 80vh;
+}
+
+#menu-icon {
+  cursor: pointer;
+  width: fit-content;
+  display: inline;
+  margin-right: 40px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+#logoBtn h3 {
+  padding-top: 5px;
+  margin: 0px;
+}
+
+#signin-btn {
+  width: 90%;
+}
+
+#logout-btn {
+  width: 90%;
+}
+
+#business-links {
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+}
+
+#business-links a {
+  color: black;
+}
+
+#loggedin-div {
+  display: none;
+}
+
+#loggedin-div a, p {
+  color: black;
+}
+
+#loggedin-div i {
+  width: fit-content;
+  display: inline;
+  position: relative;
+  margin-right: 10px !important;
+  font-size: 2rem;
+  top: 8px;
+}

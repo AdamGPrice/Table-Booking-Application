@@ -1,0 +1,24 @@
+<nav>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <div class="nav-wrapper teal darken-1">
+    <div class="container">
+      <i id="menu-icon" data-target="slide-out" class="large material-icons sidenav-trigger">menu</i>
+      <a href="/" class="brand-logo" id="logoBtn"><H3>Table Booking App</H3></a>
+    </div>
+  </div>
+  <ul id="slide-out" class="sidenav">
+    <div class="section"></div>
+    <a href="/login" id="signin-btn" class="waves-effect waves-light btn-large teal darken-1">Sign in</a>
+    <div id="loggedin-div">
+      <a class="subheader">Logged in as</a>
+      <a href="/account" class="truncate"><i class="material-icons">account_circle</i>testaccount1@email.com</a>
+      <a id="logout-btn" class="waves-effect waves-light btn-large red darken-2">Logout</a>
+    </div>
+    <ul id="business-links">
+      <li><div class="divider"></div></li>
+      <li><a href="/business/signup">Create a business account</a></li>
+      <li><a href="/business/login">Business login</a></li>
+    </ul>
+  </ul>
+  <link rel="stylesheet" href="/css/nav.css">
+</nav>

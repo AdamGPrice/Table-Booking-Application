@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
     <link rel="stylesheet" href="/vendor/materialize.min.css">
-    <script src="/vendor/materialize.min.js"></script>
     <script src="/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/vendor/materialize.min.js"></script>
+    <script src="/js/sidenav.js"></script>
     <script src="/js/signup.js"></script>
     <style>
       .form-container {
@@ -15,12 +16,13 @@
     </style>
 </head>
 <body>
-    <!-- NAV BAR INCLUDE -->
-    <%- include ('partials/nav.ejs'); %>
     <main>
     <div class="section"></div>
     <div class="center-align">
-    <h3 class="blue-grey-text text-darken-1">Account Signup</h3>
+      <h3>Table Booking App</h3>
+      <h4>Let's get started</h4>
+      <div class="section"></div>
+      <p>Register with your email and password.</p>
       <div class="section"></div>
       <div class="container">
         <div class="form-container z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
@@ -44,15 +46,14 @@
             <br />
             <div class="center-align">
               <div class='row'>
-                <button id="login" type='submit' name='btn_login' class='col s12 btn btn-large #263238 blue-grey darken-1'>Login</button>
+                <button id="login" type='submit' name='btn_login' class='col s12 btn btn-large #263238 teal darken-1'>Sign up</button>
               </div>
             </div>
           </form>
         </div>
+        <p>Already signed up? <a href="/login" class="teal-text text-darken-1">Sign in</a></p>
       </div>
     </div>
   </main>
-  <!-- NAV BAR INCLUDE -->
-  <%- include ('partials/footer.ejs'); %>
 </body>
 </html>

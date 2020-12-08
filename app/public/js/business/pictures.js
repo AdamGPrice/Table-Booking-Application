@@ -70,9 +70,10 @@ function setupUploadButton() {
             headers: {
                 Authorization: 'Bearer ' + account.token
             },
-            success: (data) => {
+            success: async (data) => {
                 $('#file').val('');
                 $('#file-text').val('');
+                await new Promise(r => setTimeout(r, 250)); // Delay the reload of images
                 getPictures();
             },
             error: (response) => {
