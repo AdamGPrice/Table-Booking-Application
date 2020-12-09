@@ -18,6 +18,14 @@ router.get('/login', async (req, res) => {
     res.render('login');
 });
 
+router.get('/user_info', async (req, res) => {
+    res.render('user_info');
+});
+
+router.get('/account', async (req, res) => {
+    res.render('account');
+});
+
 // Business/pages
 router.get('/business/signup', async (req, res) => {
     res.render('business/signup');

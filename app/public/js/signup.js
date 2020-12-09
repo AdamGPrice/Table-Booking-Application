@@ -5,7 +5,7 @@ $(() => {
         const password = $('#password').val();
 
         if (email && password) {
-            credentials = { email, password }
+            credentials = { email, password };
 
             $.ajax({
                 url: '/api/users',
@@ -25,7 +25,7 @@ $(() => {
 });
 
 function AuthenticateUser(email, password) {
-    credentials = { type: 'user', email, password }
+    credentials = { type: 'user', email, password };
     $.ajax({
         url: '/api/auth',
         type: 'POST',
@@ -34,7 +34,7 @@ function AuthenticateUser(email, password) {
         success: (data) => {
             console.log(data)
             localStorage.setItem('account', JSON.stringify(data));
-            window.location.href = "/";
+            window.location.href = "/user_info";
         },
         error: (response) => {
             console.log(response);        

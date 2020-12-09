@@ -86,17 +86,27 @@ router.get('/:id', async (req, res) => {
 });
 
 // Get user info from user id
-router.get('/user/:id', async (req, res) => {    
+router.get('/user/:id', auth.authenticateToken, async (req, res) => {
+    console.log(req.account);
     const { id } = req.params;
-    const user_info = await queries.getByUserId(id);
-    if (user_info == undefined) {
-        res.status(404);
+    // Check if the user is requesting their own info or if a pub owner 
+    if (req.account.type == 'owner' || req.account.id == id) {
+        const user_info = await queries.getByUserId(id);
+        if (user_info == undefined) {
+            res.status(404);
+            res.json({
+                status: res.statusCode,
+                message: 'User info not found.'
+            });
+        } else {
+            res.json(user_info);
+        }
+    } else {
+        res.status(401);
         res.json({
             status: res.statusCode,
-            message: 'User info not found.'
+            message: 'Cannot view the user information of other users'
         });
-    } else {
-        res.json(user_info);
     }
 });
 
