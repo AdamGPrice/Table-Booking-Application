@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="/vendor/materialize.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/search.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/vendor/materialize.min.js"></script>
+    <script src="/js/sidenav.js"></script>
+    <script src="/js/search.js"></script>
+</head>
+<body>
+    <!-- NAV BAR INCLUDE -->
+    <%- include ('partials/side-nav.ejs'); %>
+    <main class="container">
+        <div class="section"></div>
+        <div class="section"></div>
+        <div class="row">
+            <div class="col s3">
+                <div class="z-depth-3 col s12">
+                    <h5>Day of week</h5>
+                    <div class="day-box<% if (search.d == 1) {%> day-active <% } %>" id="day-btn-1">
+                        <p>Monday</p>
+                    </div>
+                    <div class="day-box<% if (search.d == 2) {%> day-active <% } %>" id="day-btn-2">
+                        <p>Tuesday</p>
+                    </div>
+                    <div class="day-box<% if (search.d == 3) {%> day-active <% } %>" id="day-btn-3">
+                        <p>Wednesday</p>
+                    </div>
+                    <div class="day-box<% if (search.d == 4) {%> day-active <% } %>" id="day-btn-4">
+                        <p>Thursday</p>
+                    </div>
+                    <div class="day-box<% if (search.d == 5) {%> day-active <% } %>" id="day-btn-5">
+                        <p>Friday</p>
+                    </div>
+                    <div class="day-box<% if (search.d == 6) {%> day-active <% } %>" id="day-btn-6">
+                        <p>Saturday</p>
+                    </div>
+                    <div class="day-box<% if (search.d == 7) {%> day-active <% } %>" id="day-btn-7">
+                        <p>Sunday</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s8">
+                <div id="search-box" class="z-depth-3 col s12">
+                    <i class="medium material-icons col s1">search</i>
+                    <div class="input-field col s9 m7 l9">
+                        <input placeholder="Search by pub/bar name" id="pub-search" type="text" class="validate" value="<%= search.q %>">
+                    </div>
+                    <a class="waves-effect waves-light btn teal darken-1" id="search-btn">Search</a>
+                </div>
+                <div class="section"></div>
+                <div class="section"></div>
+                <% if (search.q) { %>
+                <h6><%= pubs.length %> matching results for "<%= search.q %>" 
+                    <a id="clear-btn">Clear search</a>
+                </h6>
+                <% } else { %>
+                    <h6>All Restuarants</h6>
+                <% } %>
+                <div class="section"></div>
+                <div id="search-results">
+                    <% pubs.forEach((pub, index) => { %>
+                        <a href="/pub-page?id=<%- pub.id %>" class="pub-box z-depth-3 col s12">
+                            <div class="pub-picture col s3">
+    
+                            </div>
+                            <div class="pub-details col s6"> 
+                                <h5 class="pub-name"><%- pub.name %></h5>
+                                <p class="desc"><%- pub.phone %> </p>
+                            </div>
+                            <div class="pub-times">   
+                                <p>Today: <br>
+                                    Open <%- pub.opening_times.open.substring(0, 5) %> <br>
+                                    Close <%- pub.opening_times.close.substring(0, 5) %></p> 
+                            </div>
+                        </a>
+                    <% }); %>  
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- NAV BAR INCLUDE -->
+    <%- include ('partials/footer.ejs'); %>
+</body>
+</html>

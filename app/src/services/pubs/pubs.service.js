@@ -102,12 +102,40 @@ router.get('/byowner/:id', async (req, res) => {
 // Filter pubs by name
 router.get('/filter/name/:name', async (req, res) => {
     const { name } = req.params;
-    const pubs = await queries.FilterByName(name);
+    const pubs = await queries.filterByName(name);
     if (pubs.length == 0 || pubs == undefined) {
         res.status(404);
         res.json({
             status: res.statusCode,
             message: `No pubs are bars are found with search param '${name}'`
+        })
+    } else {
+        res.json(pubs);
+    }
+});
+
+router.get('/filter/day/:day', async (req, res) => {
+    const { day } = req.params;
+    const pubs = await queries.filterByDay(day);
+    if (pubs.length == 0 || pubs == undefined) {
+        res.status(404);
+        res.json({
+            status: res.statusCode,
+            message: `No pubs are bars are open on day '${day}'`
+        })
+    } else {
+        res.json(pubs);
+    }
+});
+
+router.get('/filter/name/:name/day/:day', async (req, res) => {
+    const { name, day } = req.params;
+    const pubs = await queries.filterByNameAndDay(name, day);
+    if (pubs.length == 0 || pubs == undefined) {
+        res.status(404);
+        res.json({
+            status: res.statusCode,
+            message: `No pubs are bars are open on day '${day}' with name '${name}'`
         })
     } else {
         res.json(pubs);

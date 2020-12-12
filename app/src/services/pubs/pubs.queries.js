@@ -37,9 +37,24 @@ module.exports = {
             .first();
     },
 
-    async FilterByName(name) {
+    async filterByName(name) {
         return db(tables.pub)
             .select(collumns)
             .where('name', 'like', `%${name}%`);
+    },
+
+    async filterByDay(day) {
+        return db(tables.pub)
+            .join(tables.opening_hours, 'pub.id', '=', 'opening_hours.pub_id')
+            .where('day', '=', day)
+            .select('pub.id', 'name', 'description', 'email', 'phone');
+    },
+
+    async filterByNameAndDay(name, day) {
+        return db(tables.pub)
+            .join(tables.opening_hours, 'pub.id', '=', 'opening_hours.pub_id')
+            .where('day', '=', day)
+            .andWhere('name', 'like', `%${name}%`)
+            .select('pub.id', 'name', 'description', 'email', 'phone');
     }
 };
