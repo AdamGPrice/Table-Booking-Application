@@ -157,4 +157,44 @@ router.get('/date/:date', auth.authenticateToken, auth.isOwner, async (req, res)
     }
 });
 
+router.delete('/:booking_id/owner', auth.authenticateToken, auth.isOwner, async (req, res) => {
+    // get owners pub id
+    const pub = await pubQueries.getByOwnerId(req.account.id);
+    const { booking_id } = req.params;
+    if (pub == undefined) {
+        res.status(404);
+        res.json({
+            status: res.statusCode,
+            message: 'Account does not have pub assinged yet.'
+        });
+    } else {
+        // Check if the booking exists or cannot be deleted by wrong owner
+        const booking = await queries.isBookingOwner(pub.id, booking_id);
+        console.log(booking);
+        if (booking != undefined) {
+            try {
+                const deleted = await queries.deleteBooking(booking_id)
+                res.status(200);
+                res.json({
+                    status: res.statusCode,
+                    message: 'Booking deleted successfully.'
+                });
+            } catch(error) {
+                res.status(500);
+                res.json({
+                    status: res.statusCode,
+                    message: 'Could not delete booking by its id at this time.',
+                    Sqlmessage: error.sqlMessage
+                });
+            }
+        } else {
+            res.status(403);
+            res.json({
+                status: res.statusCode,
+                message: 'Error: Booking does not exists or owner is atempting to delete another pubs booking.' 
+            });
+        }
+    }
+});
+
 module.exports = router;

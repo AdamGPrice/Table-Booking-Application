@@ -10,10 +10,33 @@ module.exports = {
             .insert({ table_id, is_guest, guest_id, user_id, start, end, past_day });
     },
 
+    // Delete request
+    async deleteBooking(id) {
+        return db(tables.booking)
+            .andWhere('id', '=', id)
+            .delete();
+    },
+
     // Get requests
     async getAll() {
         return db(tables.booking)
             .select(collumns);
+    },
+
+    async getById(id) {
+        return db(tables.booking)
+        .where('id', '=', id)
+        .select(collumns)
+        .first();
+    },
+
+    async isBookingOwner(pub_id, id) {
+        return db(tables.booking)
+            .join(tables.table, 'booking.table_id', '=', 'table.id')
+            .where('table.pub_id', '=', pub_id)
+            .andWhere('booking.id', '=', id)
+            .select('booking.id')
+            .first();
     },
 
     async getAllPubBookings(pub_id) {

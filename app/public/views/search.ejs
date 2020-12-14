@@ -56,12 +56,13 @@
                 </div>
                 <div class="section"></div>
                 <div class="section"></div>
+                <% const days = ['Monday', 'Tueday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %> 
                 <% if (search.q) { %>
                 <h6><%= pubs.length %> matching results for "<%= search.q %>" 
-                    <a id="clear-btn">Clear search</a>
-                </h6>
+                    <% if (search.d) { %> open on <%= days[search.d - 1] %>. <% } %> 
+                    <a id="clear-btn">Clear search</a></h6>
                 <% } else { %>
-                    <h6>All Restuarants</h6>
+                    <h6>All pubs and bars <% if (search.d) { %> open on <%= days[search.d - 1] %> <% } %> </h6>
                 <% } %>
                 <div class="section"></div>
                 <div id="search-results">

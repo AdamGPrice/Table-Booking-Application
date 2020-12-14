@@ -63,6 +63,17 @@ router.get('/search', async (req, res) => {
     res.render('search', { pubs, search });
 });
 
+router.get('/pub-page', async (req, res) => {
+    const queries = req.query;
+    let pub;
+    if (Object.keys(queries).length > 0) { 
+        result = await axios.get(`http://localhost:8080/api/pubs/${queries.id}`);
+        pub = result.data;
+    }
+    console.log(pub);
+    res.render('pub-page', { pub });
+});
+
 router.get('/signup', async (req, res) => {
     res.render('signup');
 });
@@ -114,6 +125,10 @@ router.get('/business/dashboard/tables', async (req, res) => {
 
 router.get('/business/dashboard/pictures', async (req, res) => {
     res.render('business/pictures');
+});
+
+router.get('/business/dashboard/bookings', async (req, res) => {
+    res.render('business/bookings');
 });
 
 module.exports = router;
