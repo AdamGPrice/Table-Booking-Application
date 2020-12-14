@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
+const utils = require('../src/libs/utils');
+
 // Main / User pages
 router.get('/', async (req, res) => {
     //const result = await axios.get('http://localhost:8080/api/pubs');
@@ -36,7 +38,7 @@ router.get('/search', async (req, res) => {
                 pubs = result.data;
             } catch {
                 pubs = []
-            }
+            }   
         } else if (queries.d) {
             search.d = queries.d;
             try {
@@ -48,11 +50,15 @@ router.get('/search', async (req, res) => {
         }
     }
 
-    const day = new Date().getDay();
+    const day = utils.getWeekDay(new Date());
     // Add additional data the pubs that got selected
     await Promise.all(pubs.map(async (pub, index) => {
-        const opening_times = await axios.get(`http://localhost:8080/api/opening_hours/pub/${pub.id}/day/${day}`);
-        pubs[index].opening_times = opening_times.data;
+        try {
+            const opening_times = await axios.get(`http://localhost:8080/api/opening_hours/pub/${pub.id}/day/${day}`);
+            pubs[index].opening_times = opening_times.data;
+        } catch (error) {
+            pubs[index].opening_times = { open: 'N/A', close: 'N/A' };
+        }
     }));
     res.render('search', { pubs, search });
 });

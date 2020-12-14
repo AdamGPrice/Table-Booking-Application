@@ -6,5 +6,7 @@ module.exports = {
     address: 'address',
     opening_hours: 'opening_hours',
     table: 'table',
-    picture: 'picture'
+    picture: 'picture',
+    booking: 'booking',
+    guest: 'guest'
 }

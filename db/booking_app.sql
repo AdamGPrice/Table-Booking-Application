@@ -79,6 +79,29 @@ CREATE TABLE IF NOT EXISTS picture (
     FOREIGN KEY(pub_id) REFERENCES pub (id)
 );
 
+CREATE TABLE IF NOT EXISTS guest (
+    id              int             NOT NULL AUTO_INCREMENT,
+    first_name      varchar(100)    NOT NULL,
+    last_name       varchar(100),
+    phone           varchar(50),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS booking (
+    id              int             NOT NULL AUTO_INCREMENT,
+    table_id        int             NOT NULL,
+    is_guest        boolean         NOT NULL,
+    guest_id        int,
+    user_id         int,
+    start           datetime        NOT NULL,
+    end             datetime        NOT NULL,
+    past_day        bool            NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(table_id) REFERENCES `table` (id),
+    FOREIGN KEY(guest_id) REFERENCES guest (id),
+    FOREIGN KEY(user_id) REFERENCES user (id)
+);
+
 /*** TEST PUB ACCOUNT ***/
 INSERT INTO owner (email, password) VALUES ('testpub@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
 INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Eagle', 'A pub for testing', 'contact.TheEagle@mail.com', '0115 3073900');
@@ -135,7 +158,7 @@ INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (3, 5, 2, 0);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (3, 6, 2, 1);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (3, 7, 8, 0);
 
-/*** TEST PUB ACCOUNT 3 ***/
+/*** TEST PUB ACCOUNT 4 ***/
 INSERT INTO owner (email, password) VALUES ('testpub4@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
 INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Bell', 'A pub for testing', 'contact.thebell@mail.com', '0115 8293153');
 INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');

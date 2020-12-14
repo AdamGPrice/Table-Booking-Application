@@ -44,5 +44,12 @@ module.exports = {
             .where('pub_id', '=', pub_id)
             .andWhere('day', '=', day)
             .first();
+    },
+
+    async getByTableId(table_id) {
+        return db(tables.opening_hours)
+            .join(tables.table, 'opening_hours.pub_id', '=', 'table.pub_id')
+            .where('table.id', '=', table_id)
+            .select('opening_hours.id', 'opening_hours.pub_id', 'day', 'open', 'close');
     }
 };
