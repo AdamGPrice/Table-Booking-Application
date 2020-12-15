@@ -76,7 +76,7 @@
                                 <p class="desc"><%- pub.phone %> </p>
                             </div>
                             <div class="pub-times">   
-                                <p>Today: <br>
+                                <p><% if (search.d) { %> <%= days[search.d - 1] %>: <% } else { %> Today: <% } %><br>
                                     Opens <%- pub.opening_times.open.substring(0, 5) %> <br>
                                     Closes <%- pub.opening_times.close.substring(0, 5) %></p> 
                             </div>

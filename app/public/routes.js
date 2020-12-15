@@ -50,7 +50,10 @@ router.get('/search', async (req, res) => {
         }
     }
 
-    const day = utils.getWeekDay(new Date());
+    let day = utils.getWeekDay(new Date());
+    if (queries.d) {
+        day = queries.d;
+    } 
     // Add additional data the pubs that got selected
     await Promise.all(pubs.map(async (pub, index) => {
         try {
@@ -66,12 +69,15 @@ router.get('/search', async (req, res) => {
 router.get('/pub-page', async (req, res) => {
     const queries = req.query;
     let pub;
+    let opening_times;
     if (Object.keys(queries).length > 0) { 
-        result = await axios.get(`http://localhost:8080/api/pubs/${queries.id}`);
-        pub = result.data;
+        const pubResult = await axios.get(`http://localhost:8080/api/pubs/${queries.id}`);
+        pub = pubResult.data;
+        const opening_timesResult = await axios.get(`http://localhost:8080/api/opening_hours/pub/${pub.id}`);
+        opening_times = opening_timesResult.data;
     }
-    console.log(pub);
-    res.render('pub-page', { pub });
+    console.log(pub, opening_times);
+    res.render('pub-page', { pub, opening_times });
 });
 
 router.get('/signup', async (req, res) => {

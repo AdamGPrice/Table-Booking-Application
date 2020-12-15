@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
+    <title><%- pub.name %></title>
     <link rel="stylesheet" href="/vendor/materialize.min.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/pub-page.css">
@@ -16,8 +16,74 @@
 <body>
     <!-- NAV BAR INCLUDE -->
     <%- include ('partials/side-nav.ejs'); %>
+    <% const days = ['Monday', 'Tueday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']; %>
     <main class="container">
-        <%- pub.name %> 
+        <div class="col s1"></div>
+        <div class="col s10">
+            <div class="section"></div>
+            <div class="section"></div>
+            <div class="z-depth-3 col s12" id="pub-display"> 
+                <h2 class="center"><%- pub.name %></h2> 
+                <div class="col s4">
+                    <h5>Opening Times</h5>
+                    <p>
+                    <% for (let i = 1; i <= 7; i++) { %>
+                        <% let openDay = false %> 
+                        <% opening_times.forEach(oh => { 
+                            if (oh.day == i) {
+                                openDay = true;
+                                %> <%- days[i - 1] %>: <%- oh.open.substring(0, 5) %> - <%- oh.close.substring(0, 5) %></br> <%
+                            } 
+                        }); %>
+                        <% if (!openDay) { %> <%- days[i - 1] %>: Closed </br> <% } %>
+                    <% } %> 
+                    </p> 
+                </div>
+                <div class="col s8"></div>
+            </div>
+            <div class="section"></div>
+            <div class="row">
+                <div class="col s4 z-depth-3" id="booking-section">
+                    <h3 class="center">Book a table</h3>
+                    <div id="inputs">
+                        <p>Date:</p>
+                        <input type="text" class="datepicker" id="datepicker">
+
+                        <div id="time-div">
+                            <p>Time:</p>
+                            <select id="time-select">
+                            </select>
+                        </div>
+                        
+                        <div id="duration-div">
+                            <p>Duration:</p>
+                            <select id="duration-select">
+                            </select>
+                        </div>
+
+                        <p>Required Seats:</p>
+                        <input type="Number" id="seats" value="2" min="1" max="20">
+
+                        <p>Table location:</p>
+                        <select id="location-select">
+                            <option value="-1">Anywhere</option>
+                            <option value="0">Inside</option>
+                            <option value="1">Outside</option>
+                        </select>
+
+                        <a class="waves-effect waves-light btn" id="find-tables-btn">Find Tables</a>
+                    </div>
+                    <div class="section"></div>
+                </div>
+                <div class="col s1"></div>
+                <div class="col s7 z-depth-3" id="tables-section">
+                    <h3 class="center">Available tables</h3> 
+                </div>
+            </div>
+            <div class="section"></div>
+            <div class="section"></div>
+        </div>
+        <div class="col s1"></div>
     </main>
     <!-- NAV BAR INCLUDE -->
     <%- include ('partials/footer.ejs'); %>

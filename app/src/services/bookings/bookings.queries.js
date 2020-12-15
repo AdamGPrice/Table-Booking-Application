@@ -75,5 +75,5 @@ module.exports = {
             .orWhere('start', '>=', start)
             .andWhere('start', '<', end)
             .andWhere('table_id', '=', table_id);
-    }
+    },
 }; 

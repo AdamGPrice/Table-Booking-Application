@@ -197,4 +197,16 @@ router.delete('/:booking_id/owner', auth.authenticateToken, auth.isOwner, async 
     }
 });
 
+
+// Check for available tables. return tables or tables close the the requested params
+router.post('/tables/pub/:id', async (req, res) => {
+    const { start, end, seats, location } = req.body;
+    console.log(start, end, seats, location);
+
+    
+
+
+    res.json('boo');
+});
+ 
 module.exports = router;

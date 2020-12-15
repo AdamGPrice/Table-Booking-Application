@@ -1,1 +1,39 @@
-/**/
+#pub-display {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}
+
+#pub-display  h2 {
+    margin: 0px;
+    padding: 0px;
+}
+
+#inputs {
+    margin-left: 20px;
+    width: 200px;  
+}
+
+#inputs p {
+    font-size: 1.6rem;
+    padding: 0px;
+    margin: 0px;
+    display: inline;
+} 
+
+#inputs input {
+    font-size: 1.2rem;
+    display: inline;
+}
+
+#booking-section {
+    margin-left: 10px;
+    margin-right: -10px;
+}
+
+#tables-section {
+    margin-left: -10px;
+    margin-right: -20px;
+    min-height: 200px;
+}
