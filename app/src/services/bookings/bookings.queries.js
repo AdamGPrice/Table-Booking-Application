@@ -93,9 +93,8 @@ module.exports = {
             .andWhere('table_id', '=', table_id);
     },
 
-    async getAvailableTables(pub_id, start, end, seats, location) {
-        return db(tables.table)
-            .join(tables.booking, 'table.id', '=', 'booking.table_id')
-            .distinct('table.table_num', 'table.seats');
+    async newGuest(first_name, last_name, phone) {
+        return db(tables.guest)
+            .insert({ first_name, last_name, phone });
     }
 }; 

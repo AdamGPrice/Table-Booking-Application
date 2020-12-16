@@ -43,17 +43,17 @@ module.exports = {
 
     async getTablesByPubIdAndQuery(pub_id, is_outside, seats) {
         return db(tables.table)
-            .select()
             .where('pub_id', '=', pub_id)
             .andWhere('is_outside', '=', is_outside)
-            .andWhere('seats', '>=', seats);
+            .andWhere('seats', '>=', seats)
+            .select(collumns);
     },
 
     async getTablesByPubIdAndSeats(pub_id, seats) {
         return db(tables.table)
-            .select()
             .where('pub_id', '=', pub_id)
-            .andWhere('seats', '>=', seats);
+            .andWhere('seats', '>=', seats)
+            .select(collumns);
     },
 
     async getTableByPubIdAndNumber(pub_id, table_num) {

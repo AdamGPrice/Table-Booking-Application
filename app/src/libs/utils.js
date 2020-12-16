@@ -20,7 +20,15 @@ function compareTime(time, date) {
     }
 }
 
-// Stole this add days to date code from stack overflow
+function DateObjToString(dateObj) {
+    const date = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
+    const mintues = dateObj.getMinutes();
+    const time = `${dateObj.getHours()}:${mintues > 9 ? mintues : mintues + '0'}`;
+
+    return date + ' ' + time;
+}
+
+// Stole this from stack overflow to add days and hour to the js date object
 // https://stackoverflow.com/questions/563406/add-days-to-javascript-date
 Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
@@ -28,7 +36,14 @@ Date.prototype.addDays = function(days) {
     return date;
 }
 
+Date.prototype.addHours = function(h) {
+    var date = new Date(this.valueOf())
+    date.setTime(date.getTime() + (h*60*60*1000));
+    return date;
+}
+
 module.exports = {
     getWeekDay,
-    compareTime
+    compareTime,
+    DateObjToString
 }

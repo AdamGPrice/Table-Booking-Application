@@ -143,7 +143,11 @@ function findTable() {
         contentType: "application/json;charset=utf-8",
         success: (data) => {
             $('#loading-bar').css('display', 'none');
-            displayTables(data);
+            if (data.available) {
+                displayTables(data);
+            } else {
+                displayOptionalTables(data);
+            }
         },
         error: (response) => {
             console.log(response);  
@@ -152,24 +156,25 @@ function findTable() {
 }
 
 function displayTables(data) {
-    const locations = ['Inside', 'Outside']
+    const locations = ['Inside', 'Outside'];
     $('#table-list').html('');
-    const tables = data.availableTables;
+    const tables = data.tables;
 
     $('#table-list').append(`<h5>${tables.length} tables available at 
                             ${data.start.split(' ')[1]} - ${data.end.split(' ')[1]}</h5>`);
 
     tables.forEach(table => {
-        $('#table-list').append(`<div class="table col s12">
-                                    <div class="col s7">
-                                        <p>Table Num: ${table.table_num}</br>
-                                        Seats: ${table.seats}</br>
-                                        Location: ${locations[table.is_outside]}</p>
-                                    </div>
-                                    <div class="col s5">
-                                        <a class="waves-effect waves-light btn" id="book-btn-${table.id}">Book Table</a>
-                                    </div>
-                                </div>`);
+        $('#table-list').append(`
+        <div class="table col s12">
+            <div class="col s7">
+                <p>Table Num: ${table.table_num}</br>
+                Seats: ${table.seats}</br>
+                Location: ${locations[table.is_outside]}</p>
+            </div>
+            <div class="col s5">
+                <a class="waves-effect waves-light btn" id="book-btn-${table.id}">Book Table</a>
+            </div>
+        </div>`);
 
         $(`#book-btn-${table.id}`).click(() => {
             handleBooking({ 
@@ -179,6 +184,46 @@ function displayTables(data) {
             });
         });
     });
+}
+
+function displayOptionalTables(data) {
+    const locations = ['Inside', 'Outside']
+    $('#table-list').html('');
+    console.log(data);
+
+    $('#table-list').append(`<h5 class="center"> No tables are available at </br>
+        ${data.start.split(' ')[1]} - ${data.end.split(' ')[1]}</h5>`);
+
+    if (data.tables.length > 0) {
+        $('#table-list').append(`<h6 class="center">Here are some alternative times that may interest you...</h6>`);
+
+        data.tables.forEach(alt => {
+            const table = alt.table;
+            $('#table-list').append(`
+            <div class="table col s12">
+                <div class="col s7">
+                    <p>Time: ${alt.start.split(' ')[1]} - ${alt.end.split(' ')[1]} </br>
+                    Table Num: ${table.table_num}</br>
+                    Seats: ${table.seats}</br>
+                    Location: ${locations[table.is_outside]}</p>
+                </div>
+                <div class="col s5">
+                    <a class="waves-effect waves-light btn" id="book-btn-${table.id + alt.start.split(' ')[1].split(':')[0]}">Book Table</a>
+                </div>
+            </div>`);
+            $(`#book-btn-${table.id + alt.start.split(' ')[1].split(':')[0]}`).click(() => {
+                console.log('ello');
+                handleBooking({ 
+                    table_id: table.id, 
+                    start: alt.start, 
+                    end: alt.end 
+                });
+            });
+        });
+    } else {
+        $('#table-list').append(`<h5 class="center">There are not tables avaialable around the time you specified.
+                                    Try later on in the day or a different day alltogeher.</h5>`);
+    }
 }
 
 function handleBooking(bookingInfo) {
