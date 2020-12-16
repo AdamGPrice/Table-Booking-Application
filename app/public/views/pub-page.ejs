@@ -22,9 +22,9 @@
         <div class="col s10">
             <div class="section"></div>
             <div class="section"></div>
-            <div class="z-depth-3 col s12" id="pub-display"> 
+            <div class="z-depth-3 row" id="pub-display"> 
                 <h2 class="center"><%- pub.name %></h2> 
-                <div class="col s4">
+                <div class="col s3">
                     <h5>Opening Times</h5>
                     <p>
                     <% for (let i = 1; i <= 7; i++) { %>
@@ -39,10 +39,20 @@
                     <% } %> 
                     </p> 
                 </div>
-                <div class="col s8"></div>
+                <div class="col s6">
+                    <h5>About</h5>
+                    <p><%- pub.description %></p>
+                </div>
+                <div class="col s3">
+                    <h5>Contact Info</h5>
+                    <p>
+                        <%- pub.email %></br>
+                        <%- pub.phone %></br>
+                    </p>
+                </div>
             </div>
             <div class="section"></div>
-            <div class="row">
+            <div class="row" id="search-block">
                 <div class="col s4 z-depth-3" id="booking-section">
                     <h3 class="center">Book a table</h3>
                     <div id="inputs">
@@ -62,7 +72,7 @@
                         </div>
 
                         <p>Required Seats:</p>
-                        <input type="Number" id="seats" value="2" min="1" max="20">
+                        <input type="Number" id="seats" value="4" min="1" max="20">
 
                         <p>Table location:</p>
                         <select id="location-select">
@@ -70,15 +80,30 @@
                             <option value="0">Inside</option>
                             <option value="1">Outside</option>
                         </select>
-
+                        <div class="section"></div>
                         <a class="waves-effect waves-light btn" id="find-tables-btn">Find Tables</a>
                     </div>
                     <div class="section"></div>
                 </div>
                 <div class="col s1"></div>
                 <div class="col s7 z-depth-3" id="tables-section">
-                    <h3 class="center">Available tables</h3> 
+                    <h3 class="center">Available tables</h3>
+                    <div class="divider"></div>
+                    <div class="progress" id="loading-bar" style="display: none;">
+                        <div class="indeterminate"></div>
+                    </div> 
+                    <div class="col s2"></div>
+                    <div id="table-list" class="col s8">
+                    </div>
+                    <div class="col s2"></div>
                 </div>
+            </div>
+            <div class="row" id="booking-block">
+                <div class="col s2"></div>
+                <div class="col s8 z-depth-3" id="booking-outcome">
+
+                </div>
+                <div class="col s2"></div>
             </div>
             <div class="section"></div>
             <div class="section"></div>

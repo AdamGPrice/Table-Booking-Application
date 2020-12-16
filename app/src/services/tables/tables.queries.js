@@ -41,6 +41,21 @@ module.exports = {
             .andWhere('is_outside', '=', is_outside);
     },
 
+    async getTablesByPubIdAndQuery(pub_id, is_outside, seats) {
+        return db(tables.table)
+            .select()
+            .where('pub_id', '=', pub_id)
+            .andWhere('is_outside', '=', is_outside)
+            .andWhere('seats', '>=', seats);
+    },
+
+    async getTablesByPubIdAndSeats(pub_id, seats) {
+        return db(tables.table)
+            .select()
+            .where('pub_id', '=', pub_id)
+            .andWhere('seats', '>=', seats);
+    },
+
     async getTableByPubIdAndNumber(pub_id, table_num) {
         return db(tables.table)
             .select()

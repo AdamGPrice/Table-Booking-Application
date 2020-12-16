@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS booking (
 
 /*** TEST PUB ACCOUNT ***/
 INSERT INTO owner (email, password) VALUES ('testpub@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
-INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Eagle', 'A pub for testing', 'contact.TheEagle@mail.com', '0115 3073900');
+INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Eagle', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.TheEagle@mail.com', '0115 3073900');
 INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');
 /* Opening hours */
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (1, 1, '11:00', '23:00');
@@ -123,7 +123,7 @@ INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (1, 7, 8, 0);
 
 /*** TEST PUB ACCOUNT 2 ***/
 INSERT INTO owner (email, password) VALUES ('testpub2@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
-INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'Black Spaniard', 'A pub for testing', 'contact.Spaniard@mail.com', '0115 4725580');
+INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'Black Spaniard', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.Spaniard@mail.com', '0115 4725580');
 INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '64 Zoo Lane', 'Nottingham', 'Vrombaut', 'England', 'NG01 5VT');
 /* Opening hours */
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (2, 1, '11:00', '22:00');
@@ -142,7 +142,7 @@ INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (2, 7, 8, 0);
 
 /*** TEST PUB ACCOUNT 3 ***/
 INSERT INTO owner (email, password) VALUES ('testpub3@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
-INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'Peacock Arms', 'A pub for testing', 'contact.peacockarms@mail.com', '0115 2484184');
+INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'Peacock Arms', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.peacockarms@mail.com', '0115 2484184');
 INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');
 /* Opening hours */
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (3, 1, '11:00', '22:00');
@@ -160,7 +160,7 @@ INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (3, 7, 8, 0);
 
 /*** TEST PUB ACCOUNT 4 ***/
 INSERT INTO owner (email, password) VALUES ('testpub4@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
-INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Bell', 'A pub for testing', 'contact.thebell@mail.com', '0115 8293153');
+INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Bell', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.thebell@mail.com', '0115 8293153');
 INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');
 /* Opening hours */
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (4, 1, '11:00', '22:00');
@@ -177,3 +177,5 @@ INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (4, 6, 2, 1);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (4, 7, 8, 0);
 
 /*** TEST USER ACCOUNT ***/
+INSERT INTO user (email, password) VALUES ('testuser1@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
+INSERT INTO user_info (user_id, first_name, last_name, phone) VALUES (1, 'Richard', 'Hendricks', '0722838183');

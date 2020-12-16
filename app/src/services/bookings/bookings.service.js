@@ -1,9 +1,10 @@
 const express = require('express');
 
 const queries = require('./bookings.queries');
-const auth = require('../../authentication');
 const ohQueries = require('../opening_hours/opening_hours.queries');
 const pubQueries = require('../pubs/pubs.queries');
+const tableQueries = require('../tables/tables.queries');
+const auth = require('../../authentication');
 const utils = require('../../libs/utils');
 
 const router = express.Router();
@@ -85,7 +86,14 @@ router.post('/user', auth.authenticateToken, auth.isUser, async (req, res) => {
                     res.status(201);
                     res.json({
                         status: res.statusCode,
-                        message: 'Created a new booking successfully.'
+                        message: 'Created a new booking successfully.',
+                        bookingInfo: {
+                            bookingId: booking[0],
+                            table_id,
+                            start,
+                            end,
+                            past_day: pastmidnight
+                        }
                     });
                 } catch (error) {
                     res.status(500);
@@ -106,7 +114,7 @@ router.post('/user', auth.authenticateToken, auth.isUser, async (req, res) => {
     }
 });
 
-// Get all booking for a pub
+// Get all bookings for a pub
 router.get('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
     // get owners pub id
     const pub = await pubQueries.getByOwnerId(req.account.id);
@@ -122,7 +130,13 @@ router.get('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
     }
 });
 
-// Get all booking for a user account
+// Get all bookings for a user
+router.get('/mybookings', auth.authenticateToken, auth.isUser, async (req, res) => {
+    const userId = req.account.id;
+    const bookings = await queries.getUserBookings(userId);
+    res.json(bookings);
+});
+
 // date format 2020-12-14 yyyy-mm-dd
 router.get('/date/:date', auth.authenticateToken, auth.isOwner, async (req, res) => {
     const { date } = req.params;
@@ -197,16 +211,70 @@ router.delete('/:booking_id/owner', auth.authenticateToken, auth.isOwner, async 
     }
 });
 
+router.delete('/:booking_id/user', auth.authenticateToken, auth.isUser, async (req, res) => {
+    const user_id = req.account.id;
+    const { booking_id } = req.params;
+    const isUsersBooking = await queries.isBookingUser(user_id, booking_id);
+    
+    // Delte the booking if the user making the request owns the booking
+    if (isUsersBooking) {
+        try {
+            const deleted = await queries.deleteBooking(booking_id)
+            res.status(200);
+            res.json({
+                status: res.statusCode,
+                message: 'Booking deleted successfully.'
+            });
+        } catch(error) {
+            res.status(500);
+            res.json({
+                status: res.statusCode,
+                message: 'Could not delete booking by its id at this time.',
+                Sqlmessage: error.sqlMessage
+            });
+        }
+    } else {
+        res.status(403);
+        res.json({
+            status: res.statusCode,
+            message: 'Account does not permissions to modify bookings of other users.'
+        });
+    }
+
+    res.json('boo!');
+});
 
 // Check for available tables. return tables or tables close the the requested params
 router.post('/tables/pub/:id', async (req, res) => {
+    const { id } = req.params;
     const { start, end, seats, location } = req.body;
     console.log(start, end, seats, location);
 
-    
+    let pubTables = [];
+    if (location == -1) {
+        pubTables = await tableQueries.getTablesByPubIdAndSeats(id, seats);
+    } else {
+        pubTables = await tableQueries.getTablesByPubIdAndQuery(id, location, seats);
+    }
+    console.log(pubTables); 
 
+    const availableTables = [];
 
-    res.json('boo');
+    // Add additional data the pubs that got selected
+    await Promise.all(pubTables.map(async (table, index) => {
+        const result = await queries.getBookingOverlap(table.id, start, end);
+        if (result.length == 0) {
+            availableTables.push(table);
+        } 
+    }));
+
+    console.log(availableTables);
+
+    res.json({
+        availableTables,
+        start,
+        end,
+    });
 });
  
 module.exports = router;

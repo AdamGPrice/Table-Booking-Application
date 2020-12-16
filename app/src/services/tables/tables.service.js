@@ -137,4 +137,19 @@ router.get('/pub/:id/is_outside/:bool', async (req, res) => {
     res.json(tables);
 });
 
+
+// Get all tables in a pub and query if outside/inside and capacity
+router.get('/pub/:id/seats/:seats', async (req, res) => {
+    const { id, seats  } = req.params;
+    const tables = await queries.getTablesByPubIdAndSeats(id, seats);
+    res.json(tables);
+});
+
+// Get all tables in a pub and query if outside/inside and capacity
+router.get('/pub/:id/location/:loc/seats/:seats', async (req, res) => {
+    const { id, loc, seats  } = req.params;
+    const tables = await queries.getTablesByPubIdAndQuery(id, loc, seats);
+    res.json(tables);
+});
+
 module.exports = router;

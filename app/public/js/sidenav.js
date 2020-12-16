@@ -3,7 +3,6 @@ $(() => {
 
     const account = JSON.parse(localStorage.getItem('account'));
     if (account != null) {
-        console.log(account);
         configureSideNav(account);
     } else {
         // Unathenticated
@@ -25,4 +24,6 @@ function configureSideNav(account) {
     $('#signin-btn').css('display', 'none');
 
     $('#loggedin-div').css('display', 'block');
+
+    $('#nav-email').html(account.email);
 }

@@ -39,6 +39,14 @@ module.exports = {
             .first();
     },
 
+    async isBookingUser(user_id, id) {
+        return db(tables.booking)
+            .where('id', '=', id)
+            .andWhere('user_id', '=', user_id)
+            .select('id')
+            .first();
+    },
+
     async getAllPubBookings(pub_id) {
         return db(tables.booking)
             .join(tables.table, 'booking.table_id', '=', 'table.id')
@@ -47,6 +55,14 @@ module.exports = {
                     'guest_id', 'user_id', 'start', 'end', 'past_day')
             .orderBy(['table_num', 'start']);
 
+    },
+
+    async getUserBookings(user_id) {
+        return db(tables.booking)
+            .join(tables.table, 'booking.table_id', '=', 'table.id')
+            .join(tables.pub, 'table.pub_id', '=', 'pub.id')
+            .where('user_id', '=', user_id)
+            .select('booking.id as id', 'table.id as table_id', 'table_num', 'start', 'end', 'name');
     },
 
     async getPubBookingsByDate(pub_id, start, end) {
@@ -76,4 +92,10 @@ module.exports = {
             .andWhere('start', '<', end)
             .andWhere('table_id', '=', table_id);
     },
+
+    async getAvailableTables(pub_id, start, end, seats, location) {
+        return db(tables.table)
+            .join(tables.booking, 'table.id', '=', 'booking.table_id')
+            .distinct('table.table_num', 'table.seats');
+    }
 }; 
