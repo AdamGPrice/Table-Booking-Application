@@ -232,7 +232,7 @@ function handleBooking(bookingInfo) {
     if (account && account.type == 'user') {
         userCreateBooking(bookingInfo);
     } else {
-        guestCreateBooking(bookingInfo);
+        showGuestForm(bookingInfo);
     }
 }
 
@@ -281,20 +281,71 @@ function userBookingComfirmed(bookingInfo) {
     $('#search-block').css('display', 'none');
 }
 
-function guestCreateBooking(bookingInfo) {
-    console.log(bookingInfo);
-    $('#booking-outcome').html(`
-    <h3 class="center">Booking</h3>
-    <div class="divider"></div>
-    <div class="center">
-        <h5>Enter Contact information for booking</h5>
-    </div>`);
-
-
-    $('#booking-outcome').css('display', 'block');
+function showGuestForm(bookingInfo) {
+    $('#booking-guest').css('display', 'block');
     $('#search-block').css('display', 'none');
+
+    $('#guest-btn').click(() => {
+        createGuestBooking(bookingInfo);
+    });
 }
 
+function createGuestBooking(bookingInfo) {
+    const first_name = $('#first_name').val();
+    const last_name = $('#last_name').val();
+    const phone = $('#phone').val();
+
+    if (first_name && phone) {
+        info = {
+            ...bookingInfo,
+            first_name,
+            last_name,
+            phone
+        };
+    
+        $.ajax({
+            url: '/api/bookings/guest',
+            type: 'POST',
+            data: JSON.stringify(info),
+            contentType: "application/json;charset=utf-8",
+            success: (data) => {
+                guestBookingComfirmed(data.bookingInfo);
+            },
+            error: (response) => {
+                console.log(response);        
+            }
+        });
+
+    } else {
+        // Error messages or something idk......
+    }
+}
+
+function guestBookingComfirmed(bookingInfo) {
+    let date = new Date(bookingInfo.start);
+    
+    if (bookingInfo.past_day) {
+        date = date.addDays(-1);
+    }
+
+    $('#booking-outcome').html(`
+    <h3 class="center">Booking Confirmed</h3>
+    <div class="divider"></div>
+    <div class="center"> 
+        <h4>booking infomation:</h4>
+        <h5>Booking Refernce: ${bookingInfo.bookingId}</br>
+            Table Number: ${bookingInfo.table_id}</br>
+            Date: ${date.toDateString()}</br>
+            Start Time: ${bookingInfo.start.split(' ')[1]}</br>
+            End Time: ${bookingInfo.end.split(' ')[1]}</br>
+        </h5>
+        <p>Keep hold of your booking reference number above. </br>
+            You can use it to cancel the booking with the pub or bar via their contact options. </p>
+    </div>`);
+    $('#booking-outcome').css('display', 'block');
+    $('#search-block').css('display', 'none');
+    $('#booking-guest').css('display', 'none');
+}
 
 // Utility functions
 
