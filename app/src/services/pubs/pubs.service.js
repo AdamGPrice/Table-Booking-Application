@@ -142,6 +142,37 @@ router.get('/filter/name/:name/day/:day', async (req, res) => {
     }
 });
 
-// Filter pubs by address????? no idea
+// Filter pubs by address fields and name
+router.get('/multi/:query', async (req, res) => {
+    const { query } = req.params;
+    const pubs = await queries.filterByEverything(query);
+
+    if (pubs.length == 0 || pubs == undefined) {
+        res.status(404);
+        res.json({
+            status: res.statusCode,
+            message: `No pubs are bars are found with the query '${query}'`
+        })
+    } else {
+        res.json(pubs);
+    }
+});
+
+// Filter pubs by address fields and name
+router.get('/multi/:query/day/:day', async (req, res) => {
+    const { query, day } = req.params;
+    const pubs = await queries.filterByEverythingAndDay(query, day);
+
+    if (pubs.length == 0 || pubs == undefined) {
+        res.status(404);
+        res.json({
+            status: res.statusCode,
+            message: `No pubs are bars are found with the query '${query}' at the day '${day}'`
+        })
+    } else {
+        res.json(pubs);
+    }
+});
+
 
 module.exports = router;

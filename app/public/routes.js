@@ -26,7 +26,7 @@ router.get('/search', async (req, res) => {
             search.q = queries.q;
             search.d = queries.d;
             try {
-                const result = await axios.get(`http://localhost:8080/api/pubs/filter/name/${queries.q}/day/${queries.d}`);
+                const result = await axios.get(`http://localhost:8080/api/pubs/multi/${queries.q}/day/${queries.d}`);
                 pubs = result.data;
             } catch {
                 pubs = []
@@ -34,7 +34,7 @@ router.get('/search', async (req, res) => {
         } else if (queries.q) {
             search.q = queries.q;
             try {
-                const result = await axios.get(`http://localhost:8080/api/pubs/filter/name/${queries.q}`);
+                const result = await axios.get(`http://localhost:8080/api/pubs/multi/${queries.q}`);
                 pubs = result.data;
             } catch {
                 pubs = []
@@ -49,6 +49,7 @@ router.get('/search', async (req, res) => {
             }
         }
     }
+    console.log(pubs);
 
     let day = utils.getWeekDay(new Date());
     if (queries.d) {
@@ -64,6 +65,9 @@ router.get('/search', async (req, res) => {
         }
     }));
 
+    console.log(pubs);
+
+
     // Add additional data the pubs that got selected
     await Promise.all(pubs.map(async (pub, index) => {
         try {
@@ -73,6 +77,9 @@ router.get('/search', async (req, res) => {
 
         }
     }));
+
+    console.log(pubs);
+
     
     res.render('search', { pubs, search });
 });

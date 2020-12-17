@@ -104,8 +104,8 @@ CREATE TABLE IF NOT EXISTS booking (
 
 /*** TEST PUB ACCOUNT ***/
 INSERT INTO owner (email, password) VALUES ('testpub@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
-INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Hayloft', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.TheEagle@mail.com', '0115 3073900');
-INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');
+INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Hayloft', 'This is the description for a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.TheEagle@mail.com', '0115 3073900');
+INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, 'Nottingham Rd', 'Nottingham', 'Giltbrook', 'England', 'NG16 2GB');
 /* Opening hours */
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (1, 1, '11:00', '23:00');
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (1, 2, '11:00', '23:00');
@@ -132,8 +132,8 @@ INSERT INTO picture (pub_id, name) VALUES (1, 'pub1-7.jpg');
 
 /*** TEST PUB ACCOUNT 2 ***/
 INSERT INTO owner (email, password) VALUES ('testpub2@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
-INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'Black Spaniard', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.Spaniard@mail.com', '0115 4725580');
-INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '64 Zoo Lane', 'Nottingham', 'Vrombaut', 'England', 'NG01 5VT');
+INSERT INTO pub (owner_id, name, description, email, phone) VALUES (2, 'Black Spaniard', 'This is the description for a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.Spaniard@mail.com', '0115 4725580');
+INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (2, '49 Lavender Gardens', 'Battersea', 'London', 'England', 'SW11 1DJ');
 /* Opening hours */
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (2, 1, '11:00', '22:00');
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (2, 3, '10:00', '21:00');
@@ -160,8 +160,8 @@ INSERT INTO picture (pub_id, name) VALUES (2, 'pub2-7.jpg');
 
 /*** TEST PUB ACCOUNT 3 ***/
 INSERT INTO owner (email, password) VALUES ('testpub3@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
-INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'Peacock Arms', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.peacockarms@mail.com', '0115 2484184');
-INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');
+INSERT INTO pub (owner_id, name, description, email, phone) VALUES (3, 'Peacock Arms', 'This is the description for a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.peacockarms@mail.com', '0115 2484184');
+INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (3, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');
 /* Opening hours */
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (3, 1, '11:00', '22:00');
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (3, 3, '10:00', '23:00');
@@ -187,8 +187,8 @@ INSERT INTO picture (pub_id, name) VALUES (3, 'pub3-7.jpg');
 
 /*** TEST PUB ACCOUNT 4 ***/
 INSERT INTO owner (email, password) VALUES ('testpub4@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
-INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Bell', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.thebell@mail.com', '0115 8293153');
-INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');
+INSERT INTO pub (owner_id, name, description, email, phone) VALUES (4, 'The Bell', 'This is the description for a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.thebell@mail.com', '0115 8293153');
+INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (4, '27 Fake Street', 'Nottingham', 'Ilkeston', 'England', 'NG01 8VL');
 /* Opening hours */
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (4, 1, '11:00', '22:00');
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (4, 4, '13:00', '23:00');

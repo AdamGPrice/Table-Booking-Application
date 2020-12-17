@@ -56,5 +56,33 @@ module.exports = {
             .where('day', '=', day)
             .andWhere('name', 'like', `%${name}%`)
             .select('pub.id', 'name', 'description', 'email', 'phone');
-    }
+    },
+    
+    async filterByEverything(query) {
+        return db(tables.pub)
+            .join(tables.address, 'pub.id', '=', 'address.pub_id')
+            .where('name', 'like', `%${query}%`)
+            .orWhere('line_1', 'like', `%${query}%`)
+            .orWhere('line_2', 'like', `%${query}%`)
+            .orWhere('town', 'like', `%${query}%`)
+            .orWhere('country', 'like', `%${query}%`)
+            .select('pub.id', 'name', 'description', 'email', 'phone');
+    },
+
+    async filterByEverythingAndDay(query, day) {
+        return db(tables.pub)
+            .join(tables.address, 'pub.id', '=', 'address.pub_id')
+            .join(tables.opening_hours, 'pub.id', '=', 'opening_hours.pub_id')
+            .where('name', 'like', `%${query}%`)
+            .andWhere('day', '=', day)
+            .orWhere('line_1', 'like', `%${query}%`)
+            .andWhere('day', '=', day)
+            .orWhere('line_2', 'like', `%${query}%`)
+            .andWhere('day', '=', day)
+            .orWhere('town', 'like', `%${query}%`)
+            .andWhere('day', '=', day)
+            .orWhere('country', 'like', `%${query}%`)
+            .andWhere('day', '=', day)
+            .select('pub.id', 'name', 'description', 'email', 'phone');
+    },
 };
