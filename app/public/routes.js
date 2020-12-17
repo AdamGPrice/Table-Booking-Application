@@ -63,21 +63,37 @@ router.get('/search', async (req, res) => {
             pubs[index].opening_times = { open: 'N/A', close: 'N/A' };
         }
     }));
+
+    // Add additional data the pubs that got selected
+    await Promise.all(pubs.map(async (pub, index) => {
+        try {
+            const pictures = await axios.get(`http://localhost:8080/api/pictures/pub/${pub.id}`);
+            pubs[index].picture = pictures.data[0];
+        } catch (error) {
+
+        }
+    }));
+    
     res.render('search', { pubs, search });
 });
 
 router.get('/pub-page', async (req, res) => {
     const queries = req.query;
     let pub;
-    let opening_times;
+    let opening_times = [];
+    let pictures = [];
     if (Object.keys(queries).length > 0) { 
         const pubResult = await axios.get(`http://localhost:8080/api/pubs/${queries.id}`);
         pub = pubResult.data;
         const opening_timesResult = await axios.get(`http://localhost:8080/api/opening_hours/pub/${pub.id}`);
         opening_times = opening_timesResult.data;
+        const pictureResults = await axios.get(`http://localhost:8080/api/pictures/pub/${pub.id}`);
+        pictures = pictureResults.data;
+        const addressResults = await axios.get(`http://localhost:8080/api/addresses/pub/${pub.id}`);
+        address = addressResults.data;
     }
-    console.log(pub, opening_times);
-    res.render('pub-page', { pub, opening_times });
+    console.log(pub, opening_times, pictures, address);
+    res.render('pub-page', { pub, opening_times, pictures, address});
 });
 
 router.get('/signup', async (req, res) => {

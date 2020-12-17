@@ -3,29 +3,3 @@
     color: rgba(0, 0, 0, 0.84);
     margin-top: 20px;
 }
-
-#bookings-all {
-    overflow-x: scroll;
-}
-
-.bookings-row {
-    box-sizing: border-box;
-    width: 140%;
-    border-bottom: 1px rgba(0, 0, 0, 0.84) solid;
-    border-top: 1px rgba(0, 0, 0, 0.84) solid;
-    border-radius: 2px;
-    height: 100px;
-    padding-left: 4px;
-    margin-bottom: 2px;
-}
-
-.table-num h4 {
-    margin: 0px;
-    padding-top: 30px;
-}
-
-.table-num {
-    height: 100%;
-    width: 140px;
-    border-right:  1px rgba(0, 0, 0, 0.84) solid;
-}

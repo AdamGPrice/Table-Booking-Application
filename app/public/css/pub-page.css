@@ -3,6 +3,8 @@
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 10px;
+    height: 520px;
+    overflow: hidden;
 }
 
 #pub-display  h2 {
@@ -58,4 +60,16 @@
 #booking-outcome {
     min-height: 200px;
     display: none;
+}
+
+#pictures {
+    height: 360px;
+    overflow-y: scroll;
+}
+
+.picture-box {
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 4px;
+    margin-top: 30px;
 }

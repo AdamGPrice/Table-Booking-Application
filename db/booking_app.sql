@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS booking (
 
 /*** TEST PUB ACCOUNT ***/
 INSERT INTO owner (email, password) VALUES ('testpub@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
-INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Eagle', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.TheEagle@mail.com', '0115 3073900');
+INSERT INTO pub (owner_id, name, description, email, phone) VALUES (1, 'The Hayloft', 'This is the description a test pub blah blah blah blah very interesting information being displayed before your eyes blah blah blah', 'contact.TheEagle@mail.com', '0115 3073900');
 INSERT INTO address (pub_id, line_1, line_2, town, country, postcode) VALUES (1, '10 Test Street', 'Nottingham', 'Giltbrook', 'England', 'NG10 3DU');
 /* Opening hours */
 INSERT INTO opening_hours (pub_id, day, open, close) VALUES (1, 1, '11:00', '23:00');
@@ -120,6 +120,15 @@ INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (1, 4, 6, 0);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (1, 5, 2, 0);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (1, 6, 2, 1);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (1, 7, 8, 0);
+/* Pictures*/
+INSERT INTO picture (pub_id, name) VALUES (1, 'pub1-1.jpg');
+INSERT INTO picture (pub_id, name) VALUES (1, 'pub1-2.jpg');
+INSERT INTO picture (pub_id, name) VALUES (1, 'pub1-3.jpg');
+INSERT INTO picture (pub_id, name) VALUES (1, 'pub1-4.jpg');
+INSERT INTO picture (pub_id, name) VALUES (1, 'pub1-5.jpg');
+INSERT INTO picture (pub_id, name) VALUES (1, 'pub1-6.jpg');
+INSERT INTO picture (pub_id, name) VALUES (1, 'pub1-7.jpg');
+
 
 /*** TEST PUB ACCOUNT 2 ***/
 INSERT INTO owner (email, password) VALUES ('testpub2@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
@@ -139,6 +148,15 @@ INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (2, 4, 6, 0);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (2, 5, 2, 0);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (2, 6, 2, 1);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (2, 7, 8, 0);
+/* Pictures*/
+INSERT INTO picture (pub_id, name) VALUES (2, 'pub2-1.jpg');
+INSERT INTO picture (pub_id, name) VALUES (2, 'pub2-2.jpg');
+INSERT INTO picture (pub_id, name) VALUES (2, 'pub2-3.jpg');
+INSERT INTO picture (pub_id, name) VALUES (2, 'pub2-4.jpg');
+INSERT INTO picture (pub_id, name) VALUES (2, 'pub2-5.jpg');
+INSERT INTO picture (pub_id, name) VALUES (2, 'pub2-6.jpg');
+INSERT INTO picture (pub_id, name) VALUES (2, 'pub2-7.jpg');
+
 
 /*** TEST PUB ACCOUNT 3 ***/
 INSERT INTO owner (email, password) VALUES ('testpub3@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
@@ -157,6 +175,15 @@ INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (3, 4, 6, 0);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (3, 5, 2, 0);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (3, 6, 2, 1);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (3, 7, 8, 0);
+/* Pictures*/
+INSERT INTO picture (pub_id, name) VALUES (3, 'pub3-1.jpg');
+INSERT INTO picture (pub_id, name) VALUES (3, 'pub3-2.jpg');
+INSERT INTO picture (pub_id, name) VALUES (3, 'pub3-3.jpg');
+INSERT INTO picture (pub_id, name) VALUES (3, 'pub3-4.jpg');
+INSERT INTO picture (pub_id, name) VALUES (3, 'pub3-5.jpg');
+INSERT INTO picture (pub_id, name) VALUES (3, 'pub3-6.jpg');
+INSERT INTO picture (pub_id, name) VALUES (3, 'pub3-7.jpg');
+
 
 /*** TEST PUB ACCOUNT 4 ***/
 INSERT INTO owner (email, password) VALUES ('testpub4@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');
@@ -175,6 +202,15 @@ INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (4, 4, 6, 0);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (4, 5, 2, 0);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (4, 6, 2, 1);
 INSERT INTO `table` (pub_id, table_num, seats, is_outside) VALUES (4, 7, 8, 0);
+/* Pictures*/
+INSERT INTO picture (pub_id, name) VALUES (4, 'pub4-1.jpg');
+INSERT INTO picture (pub_id, name) VALUES (4, 'pub4-2.jpg');
+INSERT INTO picture (pub_id, name) VALUES (4, 'pub4-3.jpg');
+INSERT INTO picture (pub_id, name) VALUES (4, 'pub4-4.jpg');
+INSERT INTO picture (pub_id, name) VALUES (4, 'pub4-5.jpg');
+INSERT INTO picture (pub_id, name) VALUES (4, 'pub4-6.jpg');
+INSERT INTO picture (pub_id, name) VALUES (4, 'pub4-7.jpg');
+
 
 /*** TEST USER ACCOUNT ***/
 INSERT INTO user (email, password) VALUES ('testuser1@email.com', 'a6818b8188b36c44d17784c5551f63accc5deaf8786f9d0ad1ae3cd8d887cbab4f777286dbb315fb14854c8774dc0d10b5567e4a705536cc2a1d61ec0a16a7a6');

@@ -32,7 +32,10 @@ spec:
         - containerPort: 8080
         env:
         - name: DBPASS
-          value: my-secret-pw
+          valueFrom:
+            secretKeyRef:
+              name: dbinfo
+              key: dbpassword
         - name: DBSERVER
           value: mysql-service
         resources:

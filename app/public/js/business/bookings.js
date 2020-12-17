@@ -1,6 +1,3 @@
-let display;
-const info = {};
-
 $(() => {
     setupPage();
 });
@@ -10,35 +7,9 @@ function dateChange() {
     getBookingsByDate(date);
 }
 
-function setupPage() {
-    getAllTables();
-    $('.datepicker').datepicker({
-        defaultDate: new Date(),
-        setDefaultDate: true,
-        onClose: dateChange
-    });
-}
-
-function getAllTables() {
-    const pubId = localStorage.getItem('pubId');
-    $.ajax({
-        url: '/api/tables/pub/' + pubId,
-        type: 'GET',
-        success: (data) => {
-            display = new BookingDisplay(data);
-            info.tables = data;
-            getBookingsByDate(new Date());
-        },
-        error: (response) => {
-            console.log(response);
-        }
-    });
-}
-
 function getBookingsByDate(date) {
     const dateStr = formatDate(date);
     const day = getWeekDay(date);
-    console.log(day);
 
     const account = JSON.parse(localStorage.getItem('account'));
     $.ajax({
@@ -48,8 +19,7 @@ function getBookingsByDate(date) {
             Authorization: 'Bearer ' + account.token
         },
         success: (data) => {
-            info.bookings = data;
-            getOpeningTimesByDay(day);
+            console.log(data);
         },
         error: (response) => {
             // if 404 display pub not open on this date
@@ -58,20 +28,11 @@ function getBookingsByDate(date) {
     });
 }
 
-function getOpeningTimesByDay(day) {
-    const pubId = localStorage.getItem('pubId');
-    $.ajax({
-        url: '/api/opening_hours/pub/' + pubId + '/day/' + day,
-        type: 'GET',
-        success: (data) => {
-            info.opening_hours = data;
-            console.log(info);
-        },
-        error: (response) => {
-            console.log(response);  
-        }
-    });
-}
+
+
+
+
+
 
 
 // utility functions
@@ -86,4 +47,62 @@ function getWeekDay(date) {
         day = 7;
     }
     return day;
+}
+
+Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
+
+// Setup functions
+
+function setupPage() {
+    const pubId = localStorage.getItem('pubId');
+    $.ajax({
+        url: '/api/opening_hours/pub/' + pubId,
+        type: 'GET',
+        success: (data) => {
+            opening_hours = data;
+            inputSetup(data);
+        },
+        error: (response) => {
+            console.log(response);  
+        }
+    });
+}
+
+function nextOpenDate(date) {
+    for (i = 0; i < 7; i++) {
+        for (j = 0; j < opening_hours.length; j++) {
+            if (opening_hours[j].day == getWeekDay(date)) {
+                return date;
+            }
+        }
+        date = date.addDays(1);
+    }
+}
+
+function inputSetup(opening_times) {
+    let days = [];
+    opening_times.forEach(oh => {
+        days.push(oh.day);
+    });
+
+    const nextDate = nextOpenDate(new Date());
+    $('.datepicker').datepicker({
+        defaultDate: nextDate,
+        setDefaultDate: true,
+        disableDayFn: (date) => {
+            let openDay = false;
+            days.forEach(day => {
+                if (getWeekDay(date) == day) {
+                    openDay = true
+                }
+            });
+            return !openDay;
+        },
+        onClose: dateChange
+    });
+    dateChange();
 }

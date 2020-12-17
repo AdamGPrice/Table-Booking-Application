@@ -1,5 +1,4 @@
 node_modules
-uploads
 
 # local env files
 .env.local

@@ -31,7 +31,10 @@ spec:
         imagePullPolicy: "IfNotPresent"
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: my-secret-pw 
+          valueFrom:
+            secretKeyRef:
+              name: dbinfo
+              key: dbpassword
         args: ["--default-authentication-plugin=mysql_native_password"]
         ports:
         - containerPort: 3306

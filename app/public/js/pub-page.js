@@ -6,6 +6,7 @@ $(() => {
     $('#location-select').formSelect();
     $('#duration-select').formSelect();
     $('#find-tables-btn').click(findTable);
+    $('.materialboxed').materialbox();
 });
 
 function getPubOpeningTimes() {

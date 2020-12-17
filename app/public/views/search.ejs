@@ -68,8 +68,10 @@
                 <div id="search-results">
                     <% pubs.forEach((pub, index) => { %>
                         <a href="/pub-page?id=<%- pub.id %>" class="pub-box z-depth-3 col s12">
-                            <div class="pub-picture col s3">
-    
+                            <div class="pub-picture col s3" style="overflow-y: hidden;">
+                                <% if (pub.picture != undefined) { %> 
+                                    <img src="/uploads/<%- pub.picture.name %>" width="100%">
+                                <% } %>
                             </div>
                             <div class="pub-details col s6"> 
                                 <h5 class="pub-name"><%- pub.name %></h5>

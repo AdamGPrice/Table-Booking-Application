@@ -24,7 +24,10 @@
             <div class="section"></div>
             <div class="z-depth-3 row" id="pub-display"> 
                 <h2 class="center"><%- pub.name %></h2> 
-                <div class="col s3">
+                <div class="section"></div>
+                <div class="divider"></div>
+                <div class="divider"></div>                
+                <div class="col s2">
                     <h5>Opening Times</h5>
                     <p>
                     <% for (let i = 1; i <= 7; i++) { %>
@@ -38,17 +41,36 @@
                         <% if (!openDay) { %> <%- days[i - 1] %>: Closed </br> <% } %>
                     <% } %> 
                     </p> 
+                    <h5>Address</h5>
+                    <% if (address != undefined) { %>
+                        <p><%- address.line_1 %></br>
+                        <%- address.line_2 %></br>
+                        <%- address.town %></br>
+                        <%- address.country %></br>
+                        <%- address.postcode %></br>
+                        </p>
+                    <% } %>
                 </div>
-                <div class="col s6">
+                <div class="col s2">
                     <h5>About</h5>
                     <p><%- pub.description %></p>
-                </div>
-                <div class="col s3">
                     <h5>Contact Info</h5>
                     <p>
                         <%- pub.email %></br>
                         <%- pub.phone %></br>
                     </p>
+                </div>
+                <div class="col s8">
+                    <h5 class="center">Gallery</h5>
+                    <div id="pictures">
+                        <% pictures.forEach(pic => { %>
+                            <div class="col s6">
+                                <div class="picture-box">
+                                    <img class="materialboxed" width="100%" src="uploads/<%- pic.name %>">
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
                 </div>
             </div>
             <div class="section"></div>
@@ -113,7 +135,7 @@
                     <div class="col s1"></div>
                     <div class="col s10">
                         <div class="center">
-                            <h5>Enter contact information below to comfrim your table 
+                            <h5>Enter contact information below to comfirm your table 
                                 or sign in to save you time each time you book</h5>
                         </div>
                     </div>
