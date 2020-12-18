@@ -19,7 +19,7 @@ spec:
   selector:
     matchLabels:
       app: booking-app
-  replicas: 1
+  replicas: 5
   template:
     metadata:
       labels:
@@ -32,7 +32,7 @@ spec:
         lifecycle:
           postStart:
             exec:
-              command: ["cp" , "-r" , "/uploadstemp/" ,"/uploads/"]
+              command: ["cp" , "-a" , "/usr/src/app/uploadstemp/." ,"/usr/src/app/uploads/"]
         ports:
         - containerPort: 8080
         env:
@@ -56,10 +56,10 @@ spec:
         resources:
           limits:
             memory: "128Mi" #128 MB
-            cpu: "100m" #100 millicpu (.1 cpu or 10% of the cpu)
+            cpu: "200m" #200 millicpu (.2 cpu or 20% of the cpu)
         volumeMounts:
         - name: picturesstorage
-          mountPath: /usr/src/app/uploads
+          mountPath: /usr/src/app/uploads/
       volumes:
       - name: picturesstorage
         persistentVolumeClaim:
