@@ -46,11 +46,18 @@ function displayBookings(bookings, day) {
             }
         }
     } 
+    
+    if (displayTables.length < 1) {
+        $('#bookings-all').append(`
+            <h5>There can not be any booking without tables</h5>
+            <p>Go to the tables tab to add your tables to the system.</p>
+        `);
+    }
 
     displayTables.forEach(table => {
         $('#bookings-all').append(`
             <div>
-                <h5>Table Num: ${table.id}<h5>
+                <h5>Table Num: ${table.table_num}<h5>
                 <div class="divider"></div>
                 <div id="table-${table.id}-bookings" class="table-row"></div>
                 <div class="divider"></div>
@@ -272,7 +279,7 @@ Date.prototype.addDays = function(days) {
 }
 
 function dateToTimeStr(date) {
-    const hourStr = `${date.getHours() > 10 ? date.getHours() : date.getHours() + '0'}`;
-    const minuteStr = `${date.getMinutes() > 10 ? date.getMinutes() : date.getMinutes() + '0'}`;
+    const hourStr = `${date.getHours() >= 10 ? date.getHours() : date.getHours() + '0'}`;
+    const minuteStr = `${date.getMinutes() >= 10 ? date.getMinutes() : date.getMinutes() + '0'}`;
     return hourStr + ':' + minuteStr;
 }

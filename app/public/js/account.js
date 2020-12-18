@@ -1,7 +1,9 @@
 $(() => {
     getUserInfo();
     getUserBookings();
-    $('#make-changes-btn').click(updateUserInfo);
+    $('#make-changes-btn').click(editView);
+    $('#discard-changes-btn').click(getUserInfo);
+    $('#save-changes-btn').click(updateUserInfo);
 });
 
 function getUserInfo() {
@@ -15,11 +17,30 @@ function getUserInfo() {
         },
         success: (data) => {
             populateUserInfo(data);
+            saveView();
         },
         error: (response) => {
             console.log(response);
         }
     });
+}
+
+function editView() {
+    $('#first-name').removeAttr('disabled');
+    $('#last-name').removeAttr('disabled');
+    $('#phone').removeAttr('disabled');
+    $('#make-changes-btn').css('display', 'none');
+    $('#discard-changes-btn').css('display', 'inline-block');
+    $('#save-changes-btn').css('display', 'inline-block');
+}
+
+function saveView() {
+    $('#first-name').attr('disabled', '');
+    $('#last-name').attr('disabled', '');
+    $('#phone').attr('disabled', '');
+    $('#make-changes-btn').css('display', 'inline-block');
+    $('#discard-changes-btn').css('display', 'none');
+    $('#save-changes-btn').css('display', 'none');
 }
 
 function updateUserInfo() {
@@ -53,6 +74,11 @@ function populateUserInfo(user_info) {
     $('#phone').val(user_info.phone);
     M.updateTextFields();
 }
+
+
+
+
+
 
 // User Bookings functions
 

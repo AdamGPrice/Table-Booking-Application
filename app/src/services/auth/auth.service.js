@@ -10,9 +10,15 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     const { type, email, password } = req.body 
+    const environment = process.env.NODE_ENV || 'dev';
+    let secret = process.env.LOCAL_PASS_SECRET;
+    if (environment == 'prod') {
+        secret = process.env.PROD_PASS_SECRET
+    }
+
     // make sure account type is either business or user
     if (type == 'owner') {
-        const hashedPassword = crypto.SHA3(password, process.env.PASS_SECRET).toString();
+        const hashedPassword = crypto.SHA3(password, secret).toString();
         const account = await ownersQueires.authOwner(email, hashedPassword);
         if (account == undefined) {
            accountNotFound(req, res);
@@ -29,7 +35,7 @@ router.post('/', async (req, res) => {
             });
         }
     } else if (type == 'user') {
-        const hashedPassword = crypto.SHA3(password, process.env.PASS_SECRET).toString();
+        const hashedPassword = crypto.SHA3(password, secret).toString();
         const account = await userQueires.authUser(email, hashedPassword);
         if (account == undefined) {
            accountNotFound(req, res);

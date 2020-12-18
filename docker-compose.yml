@@ -9,7 +9,7 @@ services:
     ports:
     - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: supersecret
+      MYSQL_ROOT_PASSWORD: local-password
     volumes:
       - mysql-volume:/var/lib/mysql
 

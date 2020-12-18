@@ -19,8 +19,10 @@ router.post('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
         // Check if that day already has opeing times 
         const exists = await queries.getByPubIdAndDay(pub_id, day);
         if (exists == undefined) {
+            const fixedOpen = roundTime(open);
+            const fixedClose = roundTime(close);
             try {
-                const opening_hours = await queries.newOpeningHour(pub_id, day, open, close);
+                const opening_hours = await queries.newOpeningHour(pub_id, day, fixedOpen, fixedClose);
                 res.status(201);
                 res.json({
                     status: res.statusCode,
@@ -58,8 +60,10 @@ router.put('/', auth.authenticateToken, auth.isOwner, async (req, res) => {
         // Check if the opening_hours for that day exists before making changes
         const exists = await queries.getByPubIdAndDay(pub_id, day);
         if (exists != undefined) {
+            const fixedOpen = roundTime(open);
+            const fixedClose = roundTime(close);
             try {
-                const opening_hours = await queries.updateByPubIdAndDay(pub_id, day, open, close);
+                const opening_hours = await queries.updateByPubIdAndDay(pub_id, day, fixedOpen, fixedClose);
                 res.status(200);
                 res.json({
                     status: res.statusCode,
@@ -148,5 +152,26 @@ router.get('/pub/:id/day/:day', async (req, res) => {
         res.json(opening_hours);
     }
 });
+
+
+function roundTime(time) {
+    const split = time.split(':');
+
+    if (split[1] >= 45) {
+        split[1] = 0;
+        if (split[0] == 23) {
+            split[0] = 0;
+        } else {
+            split[0]++;
+        }
+    } else if (split[1] > 15) {
+        split[1] = 30;
+    } else {
+        split[1] = 0;
+    }
+
+    return split[0] + ':' + split[1];
+}
+
 
 module.exports = router;

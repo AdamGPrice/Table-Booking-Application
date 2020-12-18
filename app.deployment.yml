@@ -19,7 +19,7 @@ spec:
   selector:
     matchLabels:
       app: booking-app
-  replicas: 5
+  replicas: 1
   template:
     metadata:
       labels:
@@ -28,23 +28,38 @@ spec:
       containers:
       - name: booking-app
         image: table-app:node
+        imagePullPolicy: "IfNotPresent"
+        lifecycle:
+          postStart:
+            exec:
+              command: ["cp" , "-r" , "/uploadstemp/" ,"/uploads/"]
         ports:
         - containerPort: 8080
         env:
         - name: DBPASS
           valueFrom:
             secretKeyRef:
-              name: dbinfo
+              name: app-secrets
               key: dbpassword
         - name: DBSERVER
           value: mysql-service
+        - name: PROD_PASS_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: passhash
+        - name: PROD_SECRET_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: jwttoken
         resources:
           limits:
             memory: "128Mi" #128 MB
             cpu: "100m" #100 millicpu (.1 cpu or 10% of the cpu)
         volumeMounts:
         - name: picturesstorage
-          mountPath: /usr/src/app/uploads/
+          mountPath: /usr/src/app/uploads
       volumes:
       - name: picturesstorage
         persistentVolumeClaim:

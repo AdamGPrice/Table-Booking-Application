@@ -13,6 +13,10 @@
       .form-container {
         width: 400px;
       }
+      #error-msg {
+        color: red;
+        font-size: 1.2rem;
+      }
     </style>
 </head>
 <body>
@@ -43,7 +47,8 @@
                 <label for='password'>Enter your password</label>
               </div>
             </div>
-            <br />
+            <p id="error-msg" style="display: none;">super scary error message</p>
+            <br/>
             <div class="center-align">
               <div class='row'>
                 <button id="login" type='submit' name='btn_login' class='col s12 btn btn-large #263238 teal darken-1'>Sign up</button>

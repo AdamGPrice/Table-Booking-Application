@@ -4,12 +4,12 @@ FROM node:alpine
 WORKDIR /usr/src/app
 
 # Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
 COPY package*.json ./
 
 # Put files into the relative work dir
 COPY . .
+# cmd to copy /uploads to /uploadstemp maybe
+COPY /uploads /uploadstemp
 
 
 ### COMMANDS

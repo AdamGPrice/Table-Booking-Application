@@ -31,8 +31,8 @@ function getOpeningTimesDay(day) {
         type: 'GET',
         success: (data) => {
             const div = $(`#day-${day}`);
-            div.find('.open').val(data.open);
-            div.find('.close').val(data.close);
+            div.find('.open').val(data.open.split(':')[0] + ':' + data.open.split(':')[1]);
+            div.find('.close').val(data.close.split(':')[0] + ':' + data.close.split(':')[1]);
             fullStyles(day);
         },
         error: (response) => {
@@ -146,8 +146,8 @@ function populateData(opening_hours) {
     let days = [0, 0, 0, 0, 0, 0, 0];
     opening_hours.forEach(o_h => {
         const dayDiv = $(`#day-${o_h.day}`);
-        dayDiv.find('.open').val(o_h.open);
-        dayDiv.find('.close').val(o_h.close);
+        dayDiv.find('.open').val(o_h.open.split(':')[0] + ':' + o_h.open.split(':')[1])
+        dayDiv.find('.close').val(o_h.close.split(':')[0] + ':' + o_h.close.split(':')[1]);
         fullStyles(o_h.day);
         days[o_h.day - 1] = 1;
     });

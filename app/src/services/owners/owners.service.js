@@ -9,7 +9,12 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     const { email, password } = req.body;
     if (email != undefined && password != undefined) {
-        const hashedPassword = crypto.SHA3(password, process.env.PASS_SECRET).toString();
+        const environment = process.env.NODE_ENV || 'dev';
+        let secret = process.env.LOCAL_PASS_SECRET;
+        if (environment == 'prod') {
+            secret = process.env.PROD_PASS_SECRET
+        }
+        const hashedPassword = crypto.SHA3(password, secret).toString();
         try {
             const business = await queries.newOwner(email, hashedPassword);
             res.status(201);

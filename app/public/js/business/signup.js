@@ -4,22 +4,31 @@ $(() => {
         const email = $('#email').val();
         const password = $('#password').val();
 
-        if (email && password) {
-            credentials = { email, password }
+        if (password.length < 7) {
+            $('#error-msg').css('display', 'block');
+            $('#error-msg').html('Password needs to be 7 characters long.');
+        } else {
+            if (email && password) {
+                credentials = { email, password }
 
-            $.ajax({
-                url: '/api/owners',
-                type: 'POST',
-                data: JSON.stringify(credentials),
-                contentType: "application/json;charset=utf-8",
-                success: (data) => {
-                    // Authenticate the user once they have created an account
-                    AuthenticateUser(email, password);
-                },
-                error: (response) => {
-                    console.log(response);        
-                }
-            });
+                $.ajax({
+                    url: '/api/owners',
+                    type: 'POST',
+                    data: JSON.stringify(credentials),
+                    contentType: "application/json;charset=utf-8",
+                    success: (data) => {
+                        // Authenticate the user once they have created an account
+                        AuthenticateUser(email, password);
+                    },
+                    error: (response) => {
+                        if (response.status == 409) {
+                            $('#error-msg').css('display', 'block');
+                            $('#error-msg').html('That email is already in use.');
+                        }
+                        console.log(response);            
+                    }
+                });
+            }
         }
     });
 });

@@ -10,8 +10,13 @@ function authenticateToken(req, res, next) {
     if (token == null) {
         return res.sendStatus(401);  // return 401 unauthorized if token exists
     };
+    const environment = process.env.NODE_ENV || 'dev';
+    let secret = process.env.LOCAL_SECRET_TOKEN;
+    if (environment == 'prod') {
+        secret = process.env.PROD_SECRET_TOKEN
+    }
 
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, account) => {
+    jwt.verify(token, secret, (err, account) => {
         // If there is an error assume token is no longer valid and return authenticated
         if (err) {
             res.status(401);
@@ -27,11 +32,17 @@ function authenticateToken(req, res, next) {
 };
 
 function generateAccessToken(account) {
+    const environment = process.env.NODE_ENV || 'dev';
+    let secret = process.env.LOCAL_SECRET_TOKEN;
+    if (environment == 'prod') {
+        secret = process.env.PROD_SECRET_TOKEN
+    }
+
     account = JSON.stringify(account);
     return jwt.sign({
         exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7), // 1 Week token
         data: account
-    }, process.env.TOKEN_SECRET);
+    }, secret);
 }
 
 // Check if the account making the requst is type owner

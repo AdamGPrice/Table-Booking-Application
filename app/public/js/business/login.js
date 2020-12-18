@@ -20,7 +20,11 @@ $(() => {
                     window.location.href = "/business/dashboard";
                 },
                 error: (response) => {
-                    console.log(response);        
+                    if (response.status == 401) {
+                        $('#error-msg').css('display', 'block');
+                        $('#error-msg').html('Email and/or password is incorrect.');
+                    }
+                    console.log(response);            
                 }
             });
         }
