@@ -1,17 +1,3 @@
-#pub-display {
-    padding-top: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 10px;
-    height: 520px;
-    overflow: hidden;
-}
-
-#pub-display  h2 {
-    margin: 0px;
-    padding: 0px;
-}
-
 #inputs {
     margin-left: 20px;
     width: 200px;  
@@ -55,25 +41,4 @@
 
 .table a {
     margin-top: 32px;
-}
-
-#booking-outcome {
-    min-height: 200px;
-    display: none;
-}
-
-#pictures {
-    height: 360px;
-    overflow-y: scroll;
-}
-
-.picture-box {
-    height: 200px;
-    overflow: hidden;
-    margin-bottom: 4px;
-    margin-top: 30px;
-}
-
-p {
-    font-size: 0.9rem;
 }

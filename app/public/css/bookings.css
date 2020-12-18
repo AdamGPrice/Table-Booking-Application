@@ -3,3 +3,33 @@
     color: rgba(0, 0, 0, 0.84);
     margin-top: 20px;
 }
+
+i {
+    position: relative;
+    right: 25px;
+    cursor: pointer;
+    user-select: none;
+}
+
+i:hover {
+    color: #00897b;
+}
+
+.table-row {
+    padding: 10px;
+}
+
+.booking {
+    float: left;
+    width: 200px;
+    min-height: 50px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.booking p {
+    font-size: 1rem;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}

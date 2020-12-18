@@ -4,6 +4,7 @@ const queries = require('./bookings.queries');
 const ohQueries = require('../opening_hours/opening_hours.queries');
 const pubQueries = require('../pubs/pubs.queries');
 const tableQueries = require('../tables/tables.queries');
+const userInfoQueries = require('../user_info/user_info.queries');
 const auth = require('../../authentication');
 const utils = require('../../libs/utils');
 
@@ -218,6 +219,16 @@ router.get('/date/:date', auth.authenticateToken, auth.isOwner, async (req, res)
             end.setHours(et[0], et[1], et[2]);
             
             const bookings = await queries.getPubBookingsByDate(pub.id, start, end);
+            console.log(bookings);
+            await Promise.all(bookings.map(async (booking, index) => {
+                if (booking.is_guest) {
+                    const user_info = await queries.getGuestById(booking.guest_id);
+                    booking.user_info = user_info;
+                } else {
+                    const user_info = await userInfoQueries.getByUserId(booking.user_id);
+                    booking.user_info = user_info;
+                }
+            }));
             res.json(bookings);
         }
     }
@@ -373,7 +384,7 @@ async function checkForAvailableTables(pub_id, start, end, seats, location) {
 async function getSimilarTimes(start, end, pub_id) {
     const day = utils.getWeekDay(new Date(start));
     newTimes = [];
-    for (let i = -2; i <= 3; i++) {
+    for (let i = -3; i <= 3; i++) {
         if (i != 0) {
             const startNew = utils.DateObjToString(new Date(start).addHours(i));
             const endNew = utils.DateObjToString(new Date(end).addHours(i));

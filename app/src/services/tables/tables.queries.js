@@ -63,4 +63,11 @@ module.exports = {
             .andWhere('table_num', '=', table_num)
             .first();
     },
+
+    async getHighestCapacityTable(pub_id) {
+        return db(tables.table)
+            .where('pub_id', '=', pub_id)
+            .orderBy('seats', 'desc')
+            .first();
+    }
 };

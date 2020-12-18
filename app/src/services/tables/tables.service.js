@@ -152,4 +152,11 @@ router.get('/pub/:id/location/:loc/seats/:seats', async (req, res) => {
     res.json(tables);
 });
 
+// Return the highest capacity table in a pub.
+router.get('/pub/:id/capacity', async (req, res) => {
+    const { id } = req.params;
+    const table = await queries.getHighestCapacityTable(id);
+    res.json(table.seats);
+});
+
 module.exports = router;

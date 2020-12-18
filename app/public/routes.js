@@ -160,4 +160,8 @@ router.get('/business/dashboard/bookings', async (req, res) => {
     res.render('business/bookings');
 });
 
+router.get('/business/dashboard/new-booking', async (req, res) => {
+    res.render('business/new-booking');
+});
+
 module.exports = router;

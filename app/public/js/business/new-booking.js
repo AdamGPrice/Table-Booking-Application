@@ -10,8 +10,7 @@ $(() => {
 });
 
 function getPubOpeningTimes() {
-    const params = new URLSearchParams(window.location.search);
-    const pubId = params.get('id');
+    const pubId = localStorage.getItem('pubId');
     $.ajax({
         url: '/api/opening_hours/pub/' + pubId,
         type: 'GET',
@@ -23,7 +22,7 @@ function getPubOpeningTimes() {
             console.log(response);  
         }
     });
-    
+
     $.ajax({
         url: '/api/tables/pub/' + pubId + '/capacity',
         type: 'GET',
@@ -37,6 +36,7 @@ function getPubOpeningTimes() {
 }
 
 function maxCapacity(value) {
+    console.log(value);
     $('#seats').attr("max", value);
 }
 
@@ -150,8 +150,7 @@ function findTable() {
         location: $('#location-select').val()
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const pubId = params.get('id');
+    const pubId = localStorage.getItem('pubId');
     $.ajax({
         url: '/api/bookings/tables/pub/' + pubId,
         type: 'POST',
@@ -355,8 +354,8 @@ function guestBookingComfirmed(bookingInfo) {
             Start Time: ${bookingInfo.start.split(' ')[1]}</br>
             End Time: ${bookingInfo.end.split(' ')[1]}</br>
         </h5>
-        <p>Keep hold of your booking reference number above. </br>
-            You can use it to cancel the booking with the pub or bar via their contact options. </p>
+        <h5>Provide the customer with the booking reference 
+            so they can cancel at a later date if they want to.</h5>
     </div>`);
     $('#booking-outcome').css('display', 'block');
     $('#search-block').css('display', 'none');

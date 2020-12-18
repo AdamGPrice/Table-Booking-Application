@@ -96,5 +96,12 @@ module.exports = {
     async newGuest(first_name, last_name, phone) {
         return db(tables.guest)
             .insert({ first_name, last_name, phone });
-    }
+    },
+
+    async getGuestById(guest_id) {
+        return db(tables.guest)
+            .select('first_name', 'last_name', 'phone')
+            .where('id', '=', guest_id)
+            .first();
+    },
 }; 
