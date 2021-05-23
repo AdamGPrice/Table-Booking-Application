@@ -22,7 +22,7 @@
     "url": "https://github.com/AdamGPrice/Table-Booking-App.git"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "compression": "^1.7.4",
     "cross-env": "^7.0.2",
     "crypto-js": "^4.0.0",
