@@ -1,10 +1,10 @@
 # About the Project
-Table booking web application for bars/pubs to use to upgrade their existing booking solutions
+Table booking web application for bars/pubs to use to upgrade their existing booking solutions.
 built with NodeJS and MySQL for the server-side which implements a secure REST service using json web tokens for user authentication, 
 and the client-side is built with HTML and JQuery. The entire project can be deployed and configured using Kubernetes. 
 The app was made for a distributed systems module at university to demonstrate capabilities of creating a reliable and scalable web application deployed on a server 
 using container orchestration.
-Table booking application for pubs and bars
+Table booking application for pubs and bars.
 
 ## deployment
 ### local/dev
